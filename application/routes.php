@@ -38,6 +38,18 @@ Route::get('/', function()
 });
 
 /*
+
+This Web Project Urls (will clean up later)
+
+*/
+
+Route::get('clusters', array('as'=>'clusters', 'uses'=>'cluster@index'));
+Route::get('cluster/new', array('as'=>'new_cluster', 'uses'=>'cluster@new'));
+Route::post('cluster/create', array('uses'=>'cluster@create'));
+Route::delete('cluster/delete', array('uses'=>'cluster@remove'));
+
+
+/*
 |--------------------------------------------------------------------------
 | Application 404 & 500 Error Handlers
 |--------------------------------------------------------------------------
