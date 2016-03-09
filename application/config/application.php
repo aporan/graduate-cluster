@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://graduatestudies/public',
+	'url' => 'http://graduatestudies',
 
 	/*
 	|--------------------------------------------------------------------------
