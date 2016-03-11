@@ -12,8 +12,8 @@ class Create_Cluster_Seats {
         Schema::create('cluster_seats', function($table){
             $table->increments('id');
             $table->integer('cluster_id')->unsigned();
-            $table->integer('seat_num')->unsigned();
-            $table->boolean('available');
+            $table->text('seat_title')->unsigned();
+            $table->boolean('available')->default(true);
             $table->timestamps();
             $table->foreign('cluster_id')
                   ->references('id')
