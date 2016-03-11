@@ -1,52 +1,24 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Simply tell Laravel the HTTP verbs and URIs it should respond to. It is a
-| breeze to setup your application using Laravel's RESTful routing and it
-| is perfectly suited for building large applications and simple APIs.
-|
-| Let's respond to a simple GET request to http://example.com/hello:
-|
-|		Route::get('hello', function()
-|		{
-|			return 'Hello World!';
-|		});
-|
-| You can even respond to more than one URI:
-|
-|		Route::post(array('hello', 'world'), function()
-|		{
-|			return 'Hello World!';
-|		});
-|
-| It's easy to allow URI wildcards using (:num) or (:any):
-|
-|		Route::put('hello/(:any)', function($name)
-|		{
-|			return "Welcome, $name.";
-|		});
-|
-*/
+Route::get('/', function(){	return View::make('home.index'); });
 
-Route::get('/', function()
-{
-	return View::make('home.index');
-});
-
-/*
-
-This Web Project Urls (will clean up later)
-
-*/
-
+/* Cluster Routes */
 Route::get('clusters', array('as'=>'clusters', 'uses'=>'cluster@index'));
 Route::get('cluster/new', array('as'=>'new_cluster', 'uses'=>'cluster@new'));
 Route::post('cluster/create', array('uses'=>'cluster@create'));
+Route::get('cluster/(:any)/edit', array('as'=>'edit_cluster', 'uses'=>'cluster@edit'));
+Route::put('cluster/update', array('uses'=>'cluster@update'));
 Route::delete('cluster/delete', array('uses'=>'cluster@remove'));
+
+/* Seat Routes */
+Route::get('cluster/(:any)/seats', array('as'=>'cluster_seats', 'uses'=>'seat@index'));
+Route::get('seat/new', array('as'=>'new_seat', 'uses'=>'seat@new'));
+Route::post('seat/create', array('before'=>'csrf', 'uses'=>'seat@create'));
+Route::delete('seat/delete', array('uses'=>'seat@remove'));
+
+Route::get('cluster/(:any)/edit', array('as'=>'edit_cluster', 'uses'=>'cluster@edit'));
+Route::put('cluster/update', array('before'=>'csrf', 'uses'=>'cluster@update'));
+Route::delete('cluster/delete', array('before'=>'csrf', 'uses'=>'cluster@remove'));
 
 
 /*
@@ -64,15 +36,9 @@ Route::delete('cluster/delete', array('uses'=>'cluster@remove'));
 |
 */
 
-Event::listen('404', function()
-{
-	return Response::error('404');
-});
+Event::listen('404', function(){ return Response::error('404'); });
 
-Event::listen('500', function()
-{
-	return Response::error('500');
-});
+Event::listen('500', function(){ return Response::error('500'); });
 
 /*
 |--------------------------------------------------------------------------
@@ -102,22 +68,14 @@ Event::listen('500', function()
 |
 */
 
-Route::filter('before', function()
-{
+Route::filter('before', function(){
 	// Do stuff before every request to your application...
 });
 
-Route::filter('after', function($response)
-{
+Route::filter('after', function($response){
 	// Do stuff after every request to your application...
 });
 
-Route::filter('csrf', function()
-{
-	if (Request::forged()) return Response::error('500');
-});
+Route::filter('csrf', function(){ if (Request::forged()) return Response::error('500'); });
 
-Route::filter('auth', function()
-{
-	if (Auth::guest()) return Redirect::to('login');
-});
+Route::filter('auth', function(){ if (Auth::guest()) return Redirect::to('login'); });
