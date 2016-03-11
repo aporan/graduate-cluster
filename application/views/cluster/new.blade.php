@@ -9,7 +9,6 @@
 
     {{ Form::open('/cluster/create', 'POST') }}
         {{ Form::token() }}
-
           <div class="row">
             <div class="small-2 large-4 columns">
 	      {{ Form::text('clusname', null, array('placeholder'=>'Name')) }}
@@ -19,7 +18,7 @@
 
 	  <div class="row">
             <div class="small-2 large-4 columns">
-              {{ Form::text('clusmail', null, array('placeholder'=>'Email')) }}
+              {{ Form::email('clusmail', null, array('placeholder'=>'Email')) }}
 	    </div>
 	    <div class="small-10 large-8 columns"></div>
 	  </div>
