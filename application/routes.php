@@ -9,16 +9,22 @@ Route::get('login', array('uses'=>'staticpages@login'));
 /* Cluster Routes */
 Route::get('clusters', array('as'=>'clusters', 'uses'=>'cluster@index'));
 Route::get('cluster/new', array('as'=>'new_cluster', 'uses'=>'cluster@new'));
-Route::post('cluster/create', array('uses'=>'cluster@create'));
+Route::post('cluster/create', array('before'=>'csrf', 'uses'=>'cluster@create'));
 Route::get('cluster/(:any)/edit', array('as'=>'edit_cluster', 'uses'=>'cluster@edit'));
-Route::put('cluster/update', array('uses'=>'cluster@update'));
-Route::delete('cluster/delete', array('uses'=>'cluster@remove'));
+Route::put('cluster/update', array('before'=>'csrf', 'uses'=>'cluster@update'));
+Route::delete('cluster/delete', array('before'=>'csrf', 'uses'=>'cluster@remove'));
 
 /* Seat Routes */
 Route::get('cluster/(:any)/seats', array('as'=>'cluster_seats', 'uses'=>'seat@index'));
 Route::get('seat/new', array('as'=>'new_seat', 'uses'=>'seat@new'));
 Route::post('seat/create', array('before'=>'csrf', 'uses'=>'seat@create'));
-Route::delete('seat/delete', array('uses'=>'seat@remove'));
+Route::delete('seat/delete', array('before'=>'csrf', 'uses'=>'seat@remove'));
+
+/* Booking Routes */
+Route::get('booking/new', array('before'=>'csrf', 'as'=>'new_booking', 'uses'=>'booking@new'));
+Route::post('booking/create', array('before'=>'csrf', 'uses'=>'booking@create'));
+Route::delete('booking/delete', array('before'=>'csrf', 'uses'=>'booking@remove'));
+
 
 /*
 |--------------------------------------------------------------------------
