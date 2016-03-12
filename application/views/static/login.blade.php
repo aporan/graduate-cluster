@@ -1,7 +1,7 @@
 @layout('base.default')
 
 @section('mainbody')
-    <div class="large-4 large-centered columns centre-login">
+    <div class="large-4 large-centered columns page-centre">
       <div class="login-box">
 
 	<div class="row">
