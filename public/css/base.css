@@ -1,0 +1,10 @@
+/* login page */
+.centre-login {
+    padding-top: 30vh;
+}
+
+.login-box {
+    background: #F0F0F3;
+    border: 1px solid #ddd;
+    padding: 40px 20px 0 20px; 
+}
