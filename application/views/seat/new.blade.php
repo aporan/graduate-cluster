@@ -11,7 +11,7 @@
         {{ Form::token() }}
         <div class="row">
 	  <div class="small-2 large-3 columns">
-	    {{ Form::label('cluster', 'Select Graduate Cluster:', array('class'=>'inline')) }}
+	    {{ Form::label('cluster', 'Select Graduate Center:', array('class'=>'inline')) }}
 	  </div>
 	  <div class="small-2 large-4 columns">
 	    {{ Form::select('cluster', $clusters) }}
@@ -21,7 +21,7 @@
 
 	<div class="row">
 	  <div class="small-2 large-3 columns">
-	    {{ Form::label('title', 'Seat Number / Title:', array('class'=>'inline')) }}
+	    {{ Form::label('title', 'Desk Number / Title:', array('class'=>'inline')) }}
 	  </div>
 	  <div class="small-2 large-4 columns">
 	    {{ Form::text('title') }}
