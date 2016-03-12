@@ -1,8 +1,9 @@
-/* login page */
-.centre-login {
+/* common */
+.page-centre {
     padding-top: 30vh;
 }
 
+/* login page */
 .login-box {
     background: #F0F0F3;
     border: 1px solid #ddd;
