@@ -13,6 +13,11 @@ class StaticPages_Controller extends Base_Controller {
     public function get_admin_index(){
         return View::make('static.admin_index');
     }
+
+    // renders login page
+    public function get_login(){
+        return View::make('static.login');
+    }
     
 
 }
