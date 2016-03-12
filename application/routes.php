@@ -3,6 +3,8 @@
 /* Static Pages */
 Route::get('/', array('as'=>'index', 'uses'=>'staticpages@index'));
 Route::get('admin', array('as'=>'admin_index', 'uses'=>'staticpages@admin_index'));
+/* Temp log in page */
+Route::get('login', array('uses'=>'staticpages@login'));
 
 /* Cluster Routes */
 Route::get('clusters', array('as'=>'clusters', 'uses'=>'cluster@index'));
