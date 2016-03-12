@@ -1,6 +1,8 @@
 <?php
 
-Route::get('/', function(){	return View::make('home.index'); });
+/* Static Pages */
+Route::get('/', array('as'=>'index', 'uses'=>'staticpages@index'));
+Route::get('admin', array('as'=>'admin_index', 'uses'=>'staticpages@admin_index'));
 
 /* Cluster Routes */
 Route::get('clusters', array('as'=>'clusters', 'uses'=>'cluster@index'));
@@ -15,11 +17,6 @@ Route::get('cluster/(:any)/seats', array('as'=>'cluster_seats', 'uses'=>'seat@in
 Route::get('seat/new', array('as'=>'new_seat', 'uses'=>'seat@new'));
 Route::post('seat/create', array('before'=>'csrf', 'uses'=>'seat@create'));
 Route::delete('seat/delete', array('uses'=>'seat@remove'));
-
-Route::get('cluster/(:any)/edit', array('as'=>'edit_cluster', 'uses'=>'cluster@edit'));
-Route::put('cluster/update', array('before'=>'csrf', 'uses'=>'cluster@update'));
-Route::delete('cluster/delete', array('before'=>'csrf', 'uses'=>'cluster@remove'));
-
 
 /*
 |--------------------------------------------------------------------------
