@@ -3,15 +3,7 @@
 @section('mainbody')
     <div class="row"><h2>{{ $this_cluster->cluster_name }}</h2></div>
 
-    <div class="row">
-      <div class="small-2 large-2 columns" style="padding-top: 4px; padding-left:0px">Add New Seat:</div>
-      <div class="small-2 large-4 columns" style="padding-left:0px">
-	{{ HTML::link_to_route('new_seat','Add Seat', array(), array('class'=>'button tiny round')) }}
-      </div>
-      <div class="small-8 large-5"></div>
-    </div>
-
-    <div class="row"><h4 class="subheader">List of available seats:</h4></div>
+    <div class="row"><h4 class="subheader">List of Desk Spaces :</h4></div>
     <div class="row">
       <table>
 	<thead>
