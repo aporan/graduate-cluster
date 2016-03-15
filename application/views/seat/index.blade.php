@@ -1,7 +1,10 @@
 @layout('base.default')
 
 @section('mainbody')
-    <div class="row"><h2>{{ $this_cluster->cluster_name }}</h2></div>
+    <div class="row">
+      <h2>{{ $this_cluster->cluster_name }}</h2>
+      <hr/>
+    </div>
 
     <div class="row"><h4 class="subheader">List of Desk Spaces :</h4></div>
     <div class="row">
