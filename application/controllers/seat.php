@@ -6,7 +6,7 @@ class Seat_Controller extends Base_Controller {
     //renders list of all seats for a particular cluster
     public function get_index($id){
         $this_cluster = Cluster::find($id);
-        $seats = ClusterSeats::all();
+        $seats = ClusterSeats::where('cluster_id', '=', $id)->get();
         return View::make('seat.index')
             ->with('seats', $seats)
             ->with('this_cluster', $this_cluster);
