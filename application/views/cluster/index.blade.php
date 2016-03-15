@@ -1,9 +1,10 @@
 @layout('base.default')
 
 @section('mainbody')
-  <div class="row"><h2>Clusters</h2></div>
-
-
+  <div class="row">
+    <h2>Clusters</h2>
+    <hr/>
+  </div>
 
   <div class="row">
     <div class="small-2 large-2 columns" style="padding-top: 4px; padding-left:0px">Add New Cluster:</div>
