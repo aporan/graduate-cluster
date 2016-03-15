@@ -2,15 +2,16 @@
 
 @section('mainbody')
     <div class="row">
-      <div class="small-2 large-3 columns">
+      <div class="small-12 large-12 columns">
 	<h2>Add Seat</h2>
+	<hr/>
       </div>
     </div>
 
     {{ Form::open('seat/create', 'POST') }}
         {{ Form::token() }}
         <div class="row">
-	  <div class="small-2 large-3 columns">
+          <div class="small-2 large-3 columns">
 	    {{ Form::label('cluster', 'Select Graduate Center:', array('class'=>'inline')) }}
 	  </div>
 	  <div class="small-2 large-4 columns">
