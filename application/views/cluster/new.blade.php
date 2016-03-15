@@ -2,12 +2,13 @@
 
 @section('mainbody')
     <div class="row">
-      <div class="small-2 large-3 columns">
+      <div class="small-12 large-12 columns">
 	<h2>Add Cluster</h2>
+	<hr/>
       </div>
     </div>
 
-    {{ Form::open('/cluster/create', 'POST') }}
+    {{ Form::open('cluster/create', 'POST') }}
         {{ Form::token() }}
           <div class="row">
             <div class="small-2 large-4 columns">
