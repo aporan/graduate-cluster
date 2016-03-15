@@ -18,7 +18,7 @@ class Cluster_Controller extends Base_Controller {
 
     // creates an entry in cluster table
     public function post_create(){
-        insertData(Input::all());
+        insertCluster(Input::all());
         $message = 'Success!';
         return Redirect::to_route('clusters')
             ->with('message', $message);
@@ -33,16 +33,15 @@ class Cluster_Controller extends Base_Controller {
 
     // updates individual cluster pages
     public function put_update(){
-        updateData(Input::all());
+        updateCluster(Input::all());
         $message = "Cluster Updated!";
         return Redirect::to_route('clusters')
             ->with('message', $message);
-            
     }
 
     // deletes an entry from the cluster table
     public function delete_remove(){
-        removeData(Input::all());
+        removeCluster(Input::all());
         $message = 'Cluster Removed!';
         return Redirect::to_route('clusters')
             ->with('message', $message);
@@ -50,7 +49,7 @@ class Cluster_Controller extends Base_Controller {
 }
 
 // Helper Functions
-function insertData($input){
+function insertCluster($input){
     Cluster::create(array(
         'cluster_name'=>$input['clusname'],
         'email'=>$input['clusmail'],
@@ -60,7 +59,7 @@ function insertData($input){
     ));        
 }
 
-function updateData($input){
+function updateCluster($input){
     $cluster_id = $input['clus'];
     Cluster::update($cluster_id, array(
         'cluster_name'=>$input['clusname'],
@@ -71,7 +70,7 @@ function updateData($input){
     ));
 }
 
-function removeData($input){
+function removeCluster($input){
     Cluster::find($input['id'])->delete();
 }
 
