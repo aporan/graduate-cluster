@@ -3,9 +3,21 @@
     padding-top: 30vh;
 }
 
+/* booking page */
+.booking .row {
+    margin-bottom: 25px;
+}
+
+
 /* login page */
 .login-box {
     background: #F0F0F3;
     border: 1px solid #ddd;
     padding: 40px 20px 0 20px; 
+}
+
+/* booking page */
+div.radio span {
+    padding-left: 7px;
+    padding-right: 35px;
 }
