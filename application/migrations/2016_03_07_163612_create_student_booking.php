@@ -25,6 +25,7 @@ class Create_Student_Booking {
             $table->integer('faculty_id')->unsigned();
             $table->integer('cluster_id')->unsigned();
             $table->integer('seat_id')->unsigned();
+            $table->integer('reasons_id')->unsigned()->nullable();
             $table->timestamps();
             $table->foreign('faculty_id')
                   ->references('id')
@@ -36,6 +37,10 @@ class Create_Student_Booking {
             $table->foreign('cluster_id')
                   ->references('id')
                   ->on('graduate_cluster')
+                  ->onDelete('cascade');
+            $table->foreign('reasons_id')
+                  ->references('id')
+                  ->on('reasons_gsc')
                   ->onDelete('cascade');
         });
 	}
