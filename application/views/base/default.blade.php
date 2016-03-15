@@ -2,12 +2,14 @@
 <head>
   <title></title>
 
+  {{ HTML::style('css/jquery-ui.min.css') }}
   {{ HTML::style('css/normalize.css') }}
   {{ HTML::style('css/foundation.min.css') }}
   {{ HTML::style('css/base.css') }}
 
   {{ HTML::script('js/vendor/jquery.js') }}
   {{ HTML::script('js/foundation.min.js') }}
+  {{ HTML::script('js/jquery-ui.min.js') }}
     
 </head>
 
@@ -25,7 +27,7 @@
     <section class="top-bar-section">
       <!-- Left Nav Section -->
       <ul class="left">
-	<li><a href="#">Left Nav Button</a></li>
+	<li>{{ HTML::link_to_ROUTE('index', 'HOME', array(), array()) }}</li>
       </ul>
 
       <!-- Right Nav Section -->
