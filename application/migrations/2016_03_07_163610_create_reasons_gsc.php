@@ -12,6 +12,7 @@ class Create_Reasons_Gsc {
         Schema::create('reasons_gsc', function($table){
             $table->increments('id');
             $table->text('reasons');
+            $table->timestamps();
         });
 	}
 

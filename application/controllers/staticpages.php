@@ -22,6 +22,4 @@ class StaticPages_Controller extends Base_Controller {
 
 }
 
-
-
 ?>
