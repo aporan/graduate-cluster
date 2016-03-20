@@ -7,7 +7,7 @@ class Booking_Controller extends Base_Controller {
     // renders index page
     public function get_index(){
         // TODO: retrieve current logged in faculty;
-        $current_user = Faculty::find(2);
+        $current_user = Faculty::find(1);
         $bookings = Booking::where('faculty_id', '=', $current_user->id)->get();
         return View::make('booking.index')
             ->with('bookings', $bookings);
@@ -57,7 +57,7 @@ class Booking_Controller extends Base_Controller {
     public function put_update(){
         updateBooking(Input::all());
         $message = "Booking Updated!";
-        $current_user = Faculty::find(2);
+        $current_user = Faculty::find(1);
         $bookings = Booking::where('faculty_id', '=', $current_user->id)->get();
         return Redirect::to_route('bookings')
             ->with('bookings', $bookings);
@@ -101,7 +101,7 @@ function createBooking($input){
         'booking_till' => $page_two_details['booktill'],
         'nationality'  => $page_one_details['nation'],
         // this needs to be updated; currently using a hardcoded id
-        'faculty_id'   => '2',
+        'faculty_id'   => '1',
         'cluster_id'   => $page_two_details['cluster'],
         'seat_id'      => $input['seat']
     ));
