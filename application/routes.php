@@ -31,9 +31,10 @@ Route::put('booking/update', array('before'=>'csrf', 'uses'=>'booking@update'));
 Route::delete('booking/delete', array('uses'=>'booking@remove'));
 
 /* Change Request Routes*/
-Route::get('requestchange/', array('uses'=>'requestchange@index'));
+Route::get('requestchange', array('as'=>'change_index','uses'=>'requestchange@index'));
+Route::get('requestchange/(:any)/new', array('as'=>'new_change', 'uses'=>'requestchange@new'));
 Route::post('requestchange/pageone', array('before'=>'csrf', 'uses'=>'requestchange@pageone'));
-Route::post('requestchange/create', array('before'=>'csrf', 'uses'=>'requestchange@create'));
+Route::post('requestchange/update', array('before'=>'csrf', 'uses'=>'requestchange@update'));
 /*
 |--------------------------------------------------------------------------
 | Application 404 & 500 Error Handlers
