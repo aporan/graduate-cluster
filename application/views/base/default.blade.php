@@ -10,6 +10,7 @@
   {{ HTML::script('js/vendor/jquery.js') }}
   {{ HTML::script('js/foundation.min.js') }}
   {{ HTML::script('js/jquery-ui.min.js') }}
+  {{ HTML::script('js/tinymce/tinymce.min.js') }}
     
 </head>
 
