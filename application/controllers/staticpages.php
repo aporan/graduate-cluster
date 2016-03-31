@@ -16,7 +16,9 @@ class StaticPages_Controller extends Base_Controller {
 
     // renders the email page
     public function get_email_index(){
-        return View::make('static.email_index');
+        $clusters = Cluster::order_by('id')->lists('cluster_name', 'id');
+        return View::make('static.email_index')
+            ->with('clusters', $clusters);
     }
 
     // sends a new email after receiving info from the page
