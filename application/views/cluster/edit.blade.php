@@ -69,7 +69,7 @@
       
       <div class="small-12 large-6 columns">
 	<h2 class="subheader" style="margin-top: 0px;">Current Preview</h2>
-	{{ HTML::image('img/'.$cluster->image_path) }}
+	{{ HTML::image($cluster->image_path) }}
       </div>
       
     </div>  
