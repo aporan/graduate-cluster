@@ -13,6 +13,12 @@
       </div>
 
       <div class="row">
+	<div class="small-12 large-12 columns">
+	  {{  HTML::image($path) }}
+	</div>
+      </div>
+
+      <div class="row">
 	<div class="large-12 columns">
 	  <h4 class="subheader">6. Seat Selection </h4>
 	</div>
