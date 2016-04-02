@@ -35,9 +35,11 @@ class Booking_Controller extends Base_Controller {
         # validate();
         $session_details = Session::get('pagetwo_details');
         $selected_cluster = $session_details["cluster"];
+        $image_path = Cluster::find($selected_cluster)->image_path;
         $seats = ClusterSeats::where('cluster_id', '=',  $selected_cluster)->lists('seat_title','id');
         return View::make('booking.new_final')
-            ->with('seats', $seats);
+            ->with('seats', $seats)
+            ->with('path', $image_path);
     }
 
     // creates an entry in the booking table
