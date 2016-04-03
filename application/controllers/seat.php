@@ -21,14 +21,22 @@ class Seat_Controller extends Base_Controller {
 
     // creates a new seat
     public function post_create(){
+        $input = Input::all();
         $cluster_id = Input::get('cluster');
-        insertData(Input::all());
-        return Redirect::to_route('cluster_seats', array($cluster_id));
+        $validation = ClusterSeats::validate($input);
+
+        if ($validation->fails()){
+            $clusters = Cluster::order_by('id')->lists('cluster_name', 'id');
+            return Redirect::to_route('new_seat')->with_errors($validation)->with_input()->with('clusters', $clusters); 
+        } else {
+            insertSeat($input);
+            return Redirect::to_route('cluster_seats', array($cluster_id));
+        }
     }
 
     // deletes an entry
     public function delete_remove(){
-        removeData(Input::all());
+        removeSeat(Input::all());
         $cluster_id = Input::get('clusid');
         $message = 'Cluster Removed!';
         return Redirect::to_route('cluster_seats', array($cluster_id))
@@ -37,24 +45,13 @@ class Seat_Controller extends Base_Controller {
 }
 
 // Helper Functions
-function insertData($input){
+function insertSeat($input){
     ClusterSeats::create(array(
         'cluster_id'=>$input['cluster'],
         'seat_title'=>$input['title'],
     ));        
 }
 
-function updateData($input){
-    $cluster_id = $input['clus'];
-    Cluster::update($cluster_id, array(
-        'cluster_name'=>$input['clusname'],
-        'email'=>$input['clusmail'],
-        'max_seats'=>$input['clusseats'],
-        'level'=>$input['cluslev'],
-        'building'=>$input['clusbuild'],
-    ));
-}
-
-function removeData($input){
+function removeSeat($input){
     ClusterSeats::find($input['id'])->delete();
 }
