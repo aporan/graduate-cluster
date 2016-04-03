@@ -51,7 +51,7 @@
   @if(Session::has('message'))
     {{ Session::get('message') }}
   @endif
-
+  
   @yield('mainbody')
 </body>
      
