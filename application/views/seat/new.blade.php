@@ -1,6 +1,18 @@
 @layout('base.default')
 
 @section('mainbody')
+
+    @if($errors->has())
+      <div id="alerts" class="row" style="margin-top: 25px">
+	<div class="small-12 large-12 columns">
+	  <div class="alert-box alert radius">
+	    {{  $errors->first('title') }}
+	    <a href="#" class="close" onClick="alertClose()">⊗</a>
+	  </div>
+	</div>
+      </div>
+    @endif
+
     <div class="row">
       <div class="small-12 large-12 columns">
 	<h2>Add Seat</h2>
@@ -25,7 +37,7 @@
 	    {{ Form::label('title', 'Desk Number / Title:', array('class'=>'inline')) }}
 	  </div>
 	  <div class="small-2 large-4 columns">
-	    {{ Form::text('title') }}
+	    {{ Form::text('title', Input::old('title')) }}
 	  </div>
 	  <div class="small-2 large-5 columns"></div>
 	</div>
@@ -37,7 +49,12 @@
 	</div>
 
     {{ Form::close() }}
-    
 
-
+    <script>
+      function alertClose(){
+         $('#alerts').slideUp("slow", function(){
+           $(this).remove();
+         });
+      }
+    </script>
 @endsection
