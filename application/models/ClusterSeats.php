@@ -3,7 +3,7 @@
 class ClusterSeats extends Eloquent {
 
     public static $table = 'cluster_seats';
-    public static $accessible = array('seat_title', 'available', 'cluster_id');
+    public static $accessible = array('seat_title', 'cluster_id');
 
     public static $rules = array(
         'cluster' => 'required|integer',
