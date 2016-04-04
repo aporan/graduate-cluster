@@ -113,7 +113,14 @@ return array(
         'clusseats'=> '<code><b>Max Seats</b></code>',
         'cluslev'  => '<code><b>Level</b></code>',
         'clusbuild'=> '<code><b>Building</b></code>',
-        'cluster_image' => '<code><b>Upload File</b></code>'
-    ),
+        'cluster_image' => '<code><b>Upload File</b></code>',
 
+        /* Booking */
+        'studtyp' => '<code><b>Position</b></code>',
+        'studfirst' => '<code><b>First Name</b></code>',
+        'studlast' => '<code><b>Last Name</b></code>',
+        'gender' => '<code><b>Gender</b></code>',
+        'pillar' => '<code><b>Pillar</b></code>',
+        'nation' => '<code><b>Nationality</b></code>',
+    ),
 );
