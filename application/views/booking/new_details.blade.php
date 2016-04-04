@@ -1,6 +1,9 @@
 @layout('base.default')
 
 @section('mainbody')
+
+  {{ render('error.validation') }}
+
   <div class="booking">
     {{ Form::open('booking/pageone', 'POST') }}
       {{ Form::token() }}
@@ -57,11 +60,11 @@
 	  {{ Form::label('pillar', 'Pillar (Please select one):') }}
 	</div>
 	<div class="large-9 columns">
-	  {{ Form::radio('pillar', 'ASD') }}<span>ASD</span>
-	  {{ Form::radio('pillar', 'ISTD') }}<span>ISTD</span>
-	  {{ Form::radio('pillar', 'EPD') }}<span>EPD</span>
-	  {{ Form::radio('pillar', 'ESD') }}<span>ESD</span>
-	  {{ Form::radio('pillar', 'HASS') }}<span>HASS</span>
+	  {{ Form::radio('pillar', 'asd') }}<span>ASD</span>
+	  {{ Form::radio('pillar', 'istd') }}<span>ISTD</span>
+	  {{ Form::radio('pillar', 'epd') }}<span>EPD</span>
+	  {{ Form::radio('pillar', 'esd') }}<span>ESD</span>
+	  {{ Form::radio('pillar', 'hass') }}<span>HASS</span>
 	</div>
       </div>
 
@@ -84,4 +87,6 @@
       </div>
 
     {{ Form::close() }}
+
+    {{ render('error.validation_js') }}  
 @endsection
