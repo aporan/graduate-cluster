@@ -22,11 +22,19 @@ class Booking_Controller extends Base_Controller {
 
     // stores the basic details in a session 
     public function post_pageone(){
-        storeDataInSessionOne(Input::all());
-        # validate();
-        $clusters = Cluster::order_by('id')->lists('cluster_name', 'id');
-        return View::make('booking.new_selection')
-            ->with('clusters', $clusters);
+        $input = Input::all();
+        $validation = Booking::validation_basic($input);
+
+        if ($validation->fails()) {
+            return Redirect::to_route('new_booking')
+                ->with_errors($validation);
+
+        } else {
+            storeDataInSessionOne(Input::all());
+            $clusters = Cluster::order_by('id')->lists('cluster_name', 'id');
+            return View::make('booking.new_selection')
+                ->with('clusters', $clusters);
+        }
     }
 
     // stores the basic details in a session 
