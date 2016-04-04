@@ -100,7 +100,18 @@ return array(
 	| It's pretty slick. We think you'll like it.
 	|
 	*/
-
-	'attributes' => array(),
+    
+	'attributes' => array(
+        /* Seat */
+        'title' => '<code><b>Desk Space / Title</b></code>',
+        
+        /* Cluster */
+        'clusname' => '<code><b>Name</b></code>',
+        'clusmail' => '<code><b>Email</b></code>',
+        'clusseats'=> '<code><b>Max Seats</b></code>',
+        'cluslev'  => '<code><b>Level</b></code>',
+        'clusbuild'=> '<code><b>Building</b></code>',
+        'cluster_image' => '<code><b>Upload File</b></code>'
+    ),
 
 );
