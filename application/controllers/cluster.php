@@ -18,10 +18,19 @@ class Cluster_Controller extends Base_Controller {
 
     // creates an entry in cluster table
     public function post_create(){
-        insertCluster(Input::all());
-        $message = 'Success!';
-        return Redirect::to_route('clusters')
-            ->with('message', $message);
+        $input = Input::all();
+        $validation = Cluster::validate($input);
+
+        if ($validation->fails()){
+            return Redirect::to_route('new_cluster')
+                ->with_errors($validation)
+                ->with_input();
+        } else {
+            insertCluster(Input::all());
+            $message = 'Success!';
+            return Redirect::to_route('clusters')
+                ->with('message', $message);
+        }
     }
 
     // creates an edit page for individual author
