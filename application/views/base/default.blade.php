@@ -14,7 +14,7 @@
     
 </head>
 
-<header>
+<header style="margin-bottom: 20px;">
   <nav class="top-bar" data-topbar role="navigation">
     
     <ul class="title-area">
