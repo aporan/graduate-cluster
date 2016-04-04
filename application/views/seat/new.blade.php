@@ -2,17 +2,8 @@
 
 @section('mainbody')
 
-    @if($errors->has())
-      <div id="alerts" class="row" style="margin-top: 25px">
-	<div class="small-12 large-12 columns">
-	  <div class="alert-box alert radius">
-	    {{  $errors->first('title') }}
-	    <a href="#" class="close" onClick="alertClose()">⊗</a>
-	  </div>
-	</div>
-      </div>
-    @endif
-
+    {{  render('error.validation') }}    
+    
     <div class="row">
       <div class="small-12 large-12 columns">
 	<h2>Add Seat</h2>
@@ -50,11 +41,6 @@
 
     {{ Form::close() }}
 
-    <script>
-      function alertClose(){
-         $('#alerts').slideUp("slow", function(){
-           $(this).remove();
-         });
-      }
-    </script>
+    {{ render('error.validation_js') }}
+
 @endsection

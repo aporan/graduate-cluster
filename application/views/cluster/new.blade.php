@@ -2,20 +2,7 @@
 
 @section('mainbody')
 
-     @if($errors->has())
-     <?php $i = 0; ?>
-      @foreach ($errors->all() as $error)
-        <?php $i++ ?>
-        <div id="alerts_{{ $i }}" class="row">
-	  <div class="small-12 large-12 columns">
-	    <div class="alert-box alert radius">
-	      {{ $error }}<br/>
-	      <a id="trig_{{ $i }}" href="#" class="close" onClick="alertClose(this.id)">⊗</a>
-	    </div>
-	  </div>
-	</div>
-      @endforeach
-    @endif
+    {{  render('error.validation') }}    
 
     <div class="row">
       <div class="small-12 large-12 columns">
@@ -77,13 +64,6 @@
 	  
     {{ Form::close() }}
 
-    <script>
-      function alertClose($id){
-         var alert_id = $("#"+$id).closest("div").parent().parent().attr("id");
-         $("#"+alert_id).slideUp("slow", function(){
-           $(this).remove();
-         });
-      }
-    </script>
-
+    {{ render('error.validation_js') }}
+	  
 @endsection
