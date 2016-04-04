@@ -84,7 +84,9 @@ return array(
 	|
 	*/
 
-	'custom' => array(),
+	'custom' => array(
+        'clusname_match' => 'The :attribute is not valid! Please use only letters, numbers, dash or spaces.',
+    ),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -106,7 +108,7 @@ return array(
         'title' => '<code><b>Desk Space / Title</b></code>',
         
         /* Cluster */
-        'clusname' => '<code><b>Name</b></code>',
+        'clusname' => '<code><b>Cluster Name</b></code>',
         'clusmail' => '<code><b>Email</b></code>',
         'clusseats'=> '<code><b>Max Seats</b></code>',
         'cluslev'  => '<code><b>Level</b></code>',
