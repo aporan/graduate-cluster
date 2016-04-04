@@ -42,10 +42,23 @@ class Cluster_Controller extends Base_Controller {
 
     // updates individual cluster pages
     public function put_update(){
-        updateCluster(Input::all());
-        $message = "Cluster Updated!";
-        return Redirect::to_route('clusters')
-            ->with('message', $message);
+        $input = Input::all();
+        $validation = Cluster::validate_update($input);
+
+        if ($validation->fails()){
+            $id = $input['clus'];
+            $cluster = Cluster::find($id);
+            return Redirect::to_route('edit_cluster', array($id))
+                ->with_errors($validation)
+                ->with_input()
+                ->with('cluster', $cluster);
+            
+        } else {
+            updateCluster(Input::all());
+            $message = "Cluster Updated!";
+            return Redirect::to_route('clusters')
+                ->with('message', $message);
+        }
     }
 
     // deletes an entry from the cluster table
