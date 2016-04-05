@@ -1,5 +1,12 @@
 <?php
 
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+$host = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$database = substr($url["path"], 1);
+
 return array(
 
 	/*
@@ -69,31 +76,30 @@ return array(
 
 		'mysql' => array(
 			'driver'   => 'mysql',
-			'host'     => '127.0.0.1',
-			'port'     => '3306',	
-			'database' => 'laravel_gsc',
-			'username' => 'root',
-			'password' => 'comPROC2014',
+			'host'     => $host,
+			'database' => $database,
+			'username' => $username,
+			'password' => $password,
 			'charset'  => 'utf8',
 			'prefix'   => '',
 		),
 
 		'pgsql' => array(
 			'driver'   => 'pgsql',
-			'host'     => '127.0.0.1',
-			'database' => 'database',
-			'username' => 'root',
+			'host'     => '',
+			'database' => '',
+			'username' => '',
 			'password' => '',
-			'charset'  => 'utf8',
+			'charset'  => '',
 			'prefix'   => '',
-			'schema'   => 'public',
+			'schema'   => '',
 		),
 
 		'sqlsrv' => array(
 			'driver'   => 'sqlsrv',
-			'host'     => '127.0.0.1',
-			'database' => 'database',
-			'username' => 'root',
+			'host'     => '',
+			'database' => '',
+			'username' => '',
 			'password' => '',
 			'prefix'   => '',
 		),
