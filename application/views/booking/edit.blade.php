@@ -2,6 +2,8 @@
 
 @section('mainbody')
 
+    {{ render('error.validation') }}
+
     <div class="row">
       <div class="small-12 large-12 columns">
 	<h2>Edit Cluster</h2>
@@ -20,9 +22,11 @@
 
 	  <div class="row">
 	    <div class="large-3 columns">
+	      {{ Form::label('studfirst', 'First Name:') }}
 	      {{ Form::text('studfirst', e($booking->first_name))  }}
 	    </div>
 	    <div class="large-3 columns">
+	      {{ Form::label('studlast', 'Last Name:') }}
 	      {{ Form::text('studlast', e($booking->last_name))  }}
 	    </div>
 	    <div class="large-6 columns"></div>
@@ -38,11 +42,10 @@
 
 	  <div class="row">
 	    <div class="small-6 large-4 columns">
-	      {{ Form::email('studemail', e($booking->email)) }}
-	    </div>
-	    <div class="small-6 large-4 columns">
+	      {{ Form::label('studmob', 'Mobile:') }}
 	      {{ Form::text('studmob', e($booking->mobile)) }}
 	    </div>
+	    <div class="small-6 large-4 columns"></div>
 	    <div class="small-6 large-4 columns"></div>
 	  </div>
 
@@ -59,13 +62,13 @@
 	      {{ Form::label('bookfro', 'Booking From:', array('class'=>'required', 'style'=>'padding-top: 7px')) }}
 	    </div>
 	    <div class="large-3 columns">
-	      {{ Form::text('bookfro', $booking->booking_from, array('id'=>'from')) }}
+	      {{ Form::text('bookfro', $booking->booking_from, array('placeholder'=>'yy-mm-dd', 'id'=>'from')) }}
 	    </div>
 	    <div class="large-2 columns">
 	      {{ Form::label('booktill', 'Booking Till:', array('style'=>'padding-top: 7px;')) }}
 	    </div>
 	    <div class="large-3 columns end">
-	      {{ Form::text('booktill', $booking->booking_till, array('id'=>'to')) }}
+	      {{ Form::text('booktill', $booking->booking_till, array('placeholder'=>'yy-mm-dd', 'id'=>'to')) }}
 	    </div>
 	  </div>
 	  
@@ -74,31 +77,33 @@
 	      {{ Form::submit('UPDATE', array('class'=>'button expand right')) }}
 	    </div>
 	  </div>
+        </div>
 
-	  {{ Form::close() }}
+    {{ Form::close() }}
 
-	</div>
 
-	<script>
-	  $(function() {
-             $( "#from" ).datepicker({
-                 defaultDate: "+1w",
-                 changeMonth: true,
-                 dateFormat: "yy-mm-dd",
-                 onClose: function( selectedDate ) {
-                    $( "#to" ).datepicker( "option", "minDate", selectedDate );
-                 }
-             });
-             $( "#to" ).datepicker({
-                 defaultDate: "+1w",
-                 changeMonth: true,
-                 dateFormat: "yy-mm-dd",
-                 onClose: function( selectedDate ) {
-                    $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-                 }
-            });
-          });
-        </script>
+    {{ render('error.validation_js') }}
+	
+    <script>
+      $(function() {
+        $( "#from" ).datepicker({
+           defaultDate: "+1w",
+           changeMonth: true,
+           dateFormat: "yy-mm-dd",
+           onClose: function( selectedDate ) {
+             $( "#to" ).datepicker( "option", "minDate", selectedDate );
+           }
+        });
+        $( "#to" ).datepicker({
+           defaultDate: "+1w",
+           changeMonth: true,
+           dateFormat: "yy-mm-dd",
+           onClose: function( selectedDate ) {
+             $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+           }
+        });
+      });
+    </script>
 
 @endsection
 
