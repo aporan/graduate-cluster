@@ -86,6 +86,7 @@ return array(
 
 	'custom' => array(
         'clusname_match' => 'The :attribute is not valid! Please use only letters, numbers, dash or spaces.',
+        'term_required' => 'Please read and verify the :attribute'
     ),
 
 	/*
@@ -122,5 +123,13 @@ return array(
         'gender' => '<code><b>Gender</b></code>',
         'pillar' => '<code><b>Pillar</b></code>',
         'nation' => '<code><b>Nationality</b></code>',
+        'studemail' => '<code><b>Student Email</b></code>',
+        'studmob' => '<code><b>Mobile</b></code>',
+        'studgov' => '<code><b>NRIC/FIN</b></code>',
+        'bookfro' => '<code><b>Booking From</b></code>',
+        'booktill' => '<code><b>Booking Till</b></code>',
+        'cluster' => '<code><b>Graduate Center</b></code>',
+        'seat' => '<code><b>Seat</b></code>',
+        'terms' => '<code><b>Terms and Conditions</b></code>',
     ),
 );
