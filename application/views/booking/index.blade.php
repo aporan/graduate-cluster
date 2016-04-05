@@ -31,8 +31,8 @@
 	    <td>{{ HTML::link_to_route('edit_booking', e($booking->first_name).e(" ".$booking->last_name) , array($booking->id)) }}</td>
 	    <td>{{ e($booking->email) }}</td>
 	    <td class="text-center">{{ e($booking->mobile) }}</td>
-	    <td class="text-center">{{ e($booking->pillar) }}</td>
-	    <td class="text-center">{{ e($booking->category) }}</td>
+            <td class="text-center">{{ e(strtoupper($booking->pillar)) }}</td>
+	    <td class="text-center">{{ e(strtoupper($booking->category)) }}</td>
 	    <td class="text-center">{{ e($booking->booking_from) }}</td>
 	    <td class="text-center">{{ e($booking->booking_till) }}</td>
 	    <td class="text-center">{{ e($booking->nationality) }}

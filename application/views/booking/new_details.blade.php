@@ -23,10 +23,10 @@
       
       <div class="row">
 	<div class="large-3 columns">
-	  {{ Form::text('studfirst', null, array('placeholder'=>'First Name')) }}
+	  {{ Form::text('studfirst', Input::old('studfirst'), array('placeholder'=>'First Name')) }}
 	</div>
 	<div class="large-3 columns">
-	  {{ Form::text('studlast', null, array('placeholder'=>'Last Name')) }}
+	  {{ Form::text('studlast', Input::old('studlast'), array('placeholder'=>'Last Name')) }}
 	</div>
 	<div class="large-6 columns"></div>
       </div>
