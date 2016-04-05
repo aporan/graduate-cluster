@@ -1,6 +1,9 @@
 @layout('base.default')
 
 @section('mainbody')
+
+  {{ render('error.validation') }}
+
   <div class="booking">
     {{ Form::open('booking/create', 'POST') }}
       {{ Form::token() }}
@@ -48,8 +51,6 @@
 	<div class="small-6 large-2 columns"></div>
       </div>
 
-
-
       <div class="row">
 	<div class="large-2 large-offset-10 columns">
 	  {{ Form::submit('SUBMIT', array('class'=>'button expand right')) }}
@@ -57,6 +58,8 @@
       </div>
 
     {{ Form::close() }}
+
+    {{ render('error.validation_js') }}
 
 @endsection
 

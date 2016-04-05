@@ -1,6 +1,9 @@
 @layout('base.default')
 
 @section('mainbody')
+
+  {{ render('error.validation') }}
+
   <div class="booking">
     {{ Form::open('booking/pagetwo', 'POST') }}
       {{ Form::token() }}
@@ -77,6 +80,8 @@
     {{ Form::close() }}
   </div>
 
+  {{ render('error.validation_js') }}
+    
   <script>
     $(function() {
         $( "#from" ).datepicker({
