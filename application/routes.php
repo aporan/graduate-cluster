@@ -25,6 +25,8 @@ Route::delete('seat/delete', array('uses'=>'seat@remove'));
 /* Booking Routes */
 Route::get('bookings', array('as'=>'bookings', 'uses'=>'booking@index'));
 Route::get('booking/new', array('as'=>'new_booking', 'uses'=>'booking@new'));
+Route::get('booking/pagetwo', array('as' => 'new_pagetwo', 'uses' => 'booking@pagetwo'));
+Route::get('booking/pagethree', array('as' => 'new_pagethree', 'uses' => 'booking@pagethree'));
 Route::post('booking/pageone', array('before'=>'csrf', 'uses'=>'booking@pageone'));
 Route::post('booking/pagetwo', array('before'=>'csrf', 'uses'=>'booking@pagetwo'));
 Route::post('booking/create', array('before'=>'csrf', 'uses'=>'booking@create'));
