@@ -9,6 +9,7 @@ class Booking_Controller extends Base_Controller {
         // TODO: retrieve current logged in faculty;
         $current_user = Faculty::find(1);
         $bookings = Booking::where('faculty_id', '=', $current_user->id)->get();
+        echo "booking".$bookings;
         return View::make('booking.index')
             ->with('bookings', $bookings);
     }
