@@ -7,9 +7,8 @@ class Booking_Controller extends Base_Controller {
     // renders index page
     public function get_index(){
         // TODO: retrieve current logged in faculty;
-        $current_user = Faculty::find(1);
+        $current_user = Faculty::find(2);
         $bookings = Booking::where('faculty_id', '=', $current_user->id)->get();
-        echo "booking".$bookings;
         return View::make('booking.index')
             ->with('bookings', $bookings);
     }
