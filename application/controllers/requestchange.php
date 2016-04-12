@@ -6,7 +6,7 @@ class RequestChange_Controller extends Base_Controller {
 
     // renders index page of all bookings
     public function get_index(){
-        $current_user = Faculty::find(1);
+        $current_user = Faculty::find(2);
         $bookings = Booking::where('faculty_id', '=', $current_user->id)->get();
         return View::make('requestchange.index')
             ->with('bookings', $bookings);
