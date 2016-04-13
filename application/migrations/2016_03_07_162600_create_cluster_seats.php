@@ -18,7 +18,8 @@ class Create_Cluster_Seats {
             $table->foreign('cluster_id')
                   ->references('id')
                   ->on('graduate_cluster')
-                  ->onDelete('cascade');
+                  ->on_delete('cascade')
+                  ->on_update('cascade');
         });
 	}
 
