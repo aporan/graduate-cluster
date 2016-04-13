@@ -131,5 +131,6 @@ return array(
         'cluster' => '<code><b>Graduate Center</b></code>',
         'seat' => '<code><b>Seat</b></code>',
         'terms' => '<code><b>Terms and Conditions</b></code>',
+        'areason' =>'<code><b>Reason for Request</b></code>'
     ),
 );
