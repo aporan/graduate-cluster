@@ -14,7 +14,6 @@ class RequestChange_Controller extends Base_Controller {
 
     // renders new form for change of request
     public function get_new($id){
-        # validate();
         $student_booking_id = $id;
         $clusters = Cluster::order_by('id')->lists('cluster_name', 'id');
         return View::make('requestchange.new')
@@ -22,9 +21,7 @@ class RequestChange_Controller extends Base_Controller {
             ->with('thestud', $student_booking_id);
     }
 
-    // updates student booking
-    public function post_pageone(){
-        storeDataInSessionOne(Input::all());
+    public function get_pagetwo(){
         $session_details = Session::get('change_request');
         $selected_cluster = $session_details["cluster"];
         $seats = ClusterSeats::where('cluster_id', '=',  $selected_cluster)->lists('seat_title','id');
@@ -32,32 +29,66 @@ class RequestChange_Controller extends Base_Controller {
             ->with('seats', $seats);
     }
 
-    public function post_update(){
-        updateDeskSpace(Input::all());
-        $current_user = Faculty::find(1);
-        $bookings = Booking::where('faculty_id', '=', $current_user->id)->get();
-        return Redirect::to_route('change_index')
-            ->with('bookings', $bookings);
+    // updates student booking
+    public function post_pageone(){
+        $input = Input::all();
+        $validation = ChangeReasons::validation_reason($input);
+
+        if ($validation->fails()){
+            $student_booking_id = $input['thestud'];
+            $clusters = Cluster::order_by('id')->lists('cluster_name', 'id');
+            return Redirect::to_route('new_change', array($student_booking_id))
+                ->with_errors($validation)
+                ->with('clusters', $clusters)
+                ->with('thestud', $student_booking_id);
+        } else {
+            storeDataInSessionOne($input);
+            return Redirect::to_route('change_pagetwo');
+        }
     }
 
+    public function post_update(){
+        $input = Input::all();
+        $validation = ChangeReasons::validation_update($input);
+
+        if ($validation->fails()){
+            return Redirect::to_route('change_pagetwo')
+                ->with_errors($validation);
+
+        } else {
+            updateDeskSpace($input);
+            $current_user = Faculty::find(1);
+            $message = 'Your booking has been successfully changed!';
+            #$Session::flash('message', $message);
+            $bookings = Booking::where('faculty_id', '=', $current_user->id)->get();
+            return Redirect::to_route('change_index')
+                ->with('message', $message);
+        }
+    }
 }
 
 // helper functions
 function updateDeskSpace($input){
-    # TODO: validation
     $session_details = Session::get('change_request');
     $booking_id = $session_details['thestud'];
-    $reason = $session_details['areason'];
+    $text = $session_details['areason'];
     $cluster_id = $session_details['cluster'];
-    ChangeReasons::create(array(
-        'reasons' => $reason
+    $seat_id = $input['seat'];
+    $booking_from = $input['bookfro'];
+    $booking_till = $input['booktill'];
+    
+    $reason = new ChangeReasons(array('reasons'=>$text));
+    $booking = Booking::find($booking_id);
+    $booking->reasons()->insert($reason);
+
+    Booking::update($booking_id, array(
+        'cluster_id' => $cluster_id,
+        'seat_id' => $seat_id,
+        'booking_from' => $booking_from,
+        'booking_till' => $booking_till
     ));
 
-    $last_reason_id = ChangeReasons::order_by('id', 'desc')->first()->id;
-    Booking::update($booking_id, array(
-        'reasons_id' => $last_reason_id,
-        'cluster_id' => $cluster_id
-    ));
+    checkSession('change_request');
 }
 
 function getClusterName($id){
