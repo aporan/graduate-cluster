@@ -107,12 +107,9 @@ class Booking_Controller extends Base_Controller {
                 ->with('booking', $booking);
             
         } else {
-            updateBooking(Input::all());
+            updateBooking($input);
             $message = "Booking Updated!";
-            $current_user = Faculty::find(1);
-            $bookings = Booking::where('faculty_id', '=', $current_user->id)->get();
             return Redirect::to_route('bookings')
-                ->with('bookings', $bookings)
                 ->with('message', $message);
         }
     }
@@ -128,6 +125,7 @@ class Booking_Controller extends Base_Controller {
 function createBooking($input){
     $page_one_details = Session::get('pageone_details');
     $page_two_details = Session::get('pagetwo_details');
+    
     Booking::Create(array(
         'first_name' => $page_one_details['studfirst'],
         'last_name'  => $page_one_details['studlast'],
@@ -146,6 +144,9 @@ function createBooking($input){
         'seat_id'      => $input['seat']
     ));
     updateSeatAvailability($input['seat']);
+    checkSession('pageone_details');
+    checkSession('pagetwo_details');
+    
 }
 
 function updateBooking($input){
