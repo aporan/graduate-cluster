@@ -36,6 +36,7 @@ Route::delete('booking/delete', array('uses'=>'booking@remove'));
 
 /* Change Request Routes*/
 Route::get('requestchange', array('as'=>'change_index','uses'=>'requestchange@index'));
+Route::get('requestchange/pagetwo', array('as'=>'change_pagetwo', 'uses'=>'requestchange@pagetwo'));
 Route::get('requestchange/(:any)/new', array('as'=>'new_change', 'uses'=>'requestchange@new'));
 Route::post('requestchange/pageone', array('before'=>'csrf', 'uses'=>'requestchange@pageone'));
 Route::post('requestchange/update', array('before'=>'csrf', 'uses'=>'requestchange@update'));

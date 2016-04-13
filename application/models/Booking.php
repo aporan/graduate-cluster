@@ -51,6 +51,10 @@ class Booking extends Eloquent {
     public static function validation_update($data){
         return Validator::make($data, Booking::$rules_update);
     }
+
+    public function reasons(){
+        return $this->has_many('ChangeReasons');
+    }
 }
 
 ?>

@@ -86,7 +86,9 @@
 	</div>
       </div>
 
-    {{ Form::close() }}
+      {{ Form::close() }}
 
-    {{ render('error.validation_js') }}  
+  </div>
+
+  {{ render('error.validation_js') }}  
 @endsection

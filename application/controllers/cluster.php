@@ -8,7 +8,7 @@ class Cluster_Controller extends Base_Controller {
     public function get_index(){
         $clusters = Cluster::order_by('cluster_name')->get();
         return View::make('cluster.index')
-            ->with('clusters',$clusters);
+            ->with('clusters', $clusters);
     }
 
     // renders new page for creating cluster space  
@@ -54,8 +54,8 @@ class Cluster_Controller extends Base_Controller {
                 ->with('cluster', $cluster);
             
         } else {
-            updateCluster(Input::all());
-            $message = "Cluster Updated!";
+            updateCluster($input);
+            $message = "Cluster is succesfully updated!";
             return Redirect::to_route('clusters')
                 ->with('message', $message);
         }

@@ -29,6 +29,10 @@ class Cluster extends Eloquent {
     public static function validate_update($data){
         return Validator::make($data, Cluster::$rules_update);
     }
+
+    public function seats(){
+        return $this->has_many('ClusterSeats');
+    }
     
 }
 

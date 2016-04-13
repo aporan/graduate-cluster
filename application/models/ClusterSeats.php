@@ -14,6 +14,10 @@ class ClusterSeats extends Eloquent {
         return Validator::make($data, ClusterSeats::$rules);
     }
 
+    public function cluster(){
+        return $this->belongs_to('Cluster');
+    }
+
 }
 
 ?>
