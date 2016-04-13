@@ -2,6 +2,8 @@
 
 @section('mainbody')
 
+     {{ render('error.validation') }}
+
       <div class="row">
 	<div class="large-12 columns">
 	  <h2>Change Form</h2>
@@ -43,9 +45,10 @@
 	</div>
 
 	{{ Form::close() }}
-
+	
       </div>
-
+      
+      {{ render('error.validation_js') }}  
 @endsection
 
       
