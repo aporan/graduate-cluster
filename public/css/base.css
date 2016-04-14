@@ -73,3 +73,16 @@ div.radio span {
     font-size: 2rem;
     line-height: 1.25rem;
 }
+
+/* Button  */
+
+.button.expand.main:hover{
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+}
+
+body {
+    background-color: #fafafa;
+    background-image: url("../img/p2.png");
+}
