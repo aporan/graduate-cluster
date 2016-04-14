@@ -6,7 +6,6 @@
       {{ Form::open('email/create', 'POST') }}
         {{ Form::token() }}
 
-
         <div class="row">
 	  <div class="large-12 columns">
 	    <h2>Emails</h2>
@@ -32,19 +31,13 @@
 	  <div class="small-6 large-2 columns"></div>
 	</div>
 
-	<div class="row">
-	  <div class="large-12 columns">
-	    <h4 class="subheader">Compose: </h4>
-	  </div>
-	</div>
-
-        <div class="row">
+        <div class="row" style="margin-top: 10">
           <div class="small-6 large-12 columns">
 	    {{ Form::textarea('allmail', null, array('id'=>'emailarea')) }}
           </div>
 	</div>
 
-	<div class="row">
+	<div class="row" style="margin-top: 20px">
 	  <div class="small-4 large-2 columns">
 	    {{ Form::submit('SEND', array('class'=>'button expand')) }}
 	  </div>
@@ -53,7 +46,6 @@
       {{ Form::close() }}
 
     </div>
-
 
     <script>
       tinymce.init({
