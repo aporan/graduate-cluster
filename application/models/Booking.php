@@ -8,7 +8,7 @@ class Booking extends Eloquent {
     public static $rules_basic = array(
         'studfirst' => 'required|alpha',
         'studlast' => 'required|alpha',
-        'gender' => 'required|in:male, female',
+        'gender' => 'required|in:male,female',
         'nation' => 'required',
         'pillar' => 'required|in:asd,istd,epd,esd,hass',
         'studtyp' => 'required|in:phd,masters,postdoc,researcher'
