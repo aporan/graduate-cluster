@@ -10,8 +10,8 @@ class Booking extends Eloquent {
         'studlast' => 'required|alpha',
         'gender' => 'required|in:male, female',
         'nation' => 'required',
-        'pillar' => 'required|in:asd, istd, epd, esd, hass',
-        'studtyp' => 'required|in:phd, masters, postdoc, researcher'
+        'pillar' => 'required|in:asd,istd,epd,esd,hass',
+        'studtyp' => 'required|in:phd,masters,postdoc,researcher'
     );
 
     public static $rules_details = array(
