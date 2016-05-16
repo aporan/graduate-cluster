@@ -57,7 +57,7 @@ class RequestChange_Controller extends Base_Controller {
 
         } else {
             updateDeskSpace($input);
-            $current_user = Faculty::find(1);
+            $current_user = Faculty::find(2);
             $message = 'Your booking has been successfully changed!';
             #$Session::flash('message', $message);
             $bookings = Booking::where('faculty_id', '=', $current_user->id)->get();
