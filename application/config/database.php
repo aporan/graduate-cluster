@@ -73,7 +73,7 @@ return array(
 			'port'     => '3306',	
 			'database' => 'laravel_gsc',
 			'username' => 'root',
-			'password' => 'comPROC2014',
+			'password' => 'comPROC2016',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 		),
