@@ -133,7 +133,6 @@ function updateCluster($input){
 
     Cluster::update($cluster_id, array(
         'cluster_name'=>$input['clusname'],
-        'email'=>$input['clusmail'],
         'max_seats'=>$input['clusseats'],
         'level'=>$input['cluslev'],
         'building'=>$input['clusbuild'],
