@@ -139,7 +139,7 @@ function createBooking($input){
         'booking_till' => $page_two_details['booktill'],
         'nationality'  => $page_one_details['nation'],
         // this needs to be updated; currently using a hardcoded id
-        'faculty_id'   => '1',
+        'faculty_id'   => '2',
         'cluster_id'   => $page_two_details['cluster'],
         'seat_id'      => $input['seat']
     ));
