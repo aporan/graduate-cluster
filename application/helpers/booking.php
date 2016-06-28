@@ -78,7 +78,7 @@ function storePageTwoInfo($input){
 
 function updateSeatAvailability($seat_id){
     $this_seat = ClusterSeats::find($seat_id);
-    $this_seat->available = False;
+    $this_seat->available = 0;
     $this_seat->save();
 }
 
