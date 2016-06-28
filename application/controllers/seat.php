@@ -1,5 +1,7 @@
 <?php
 
+include(path('app').'/helpers/seat.php');
+
 class Seat_Controller extends Base_Controller {
     public $restful = true;
 
@@ -46,14 +48,4 @@ class Seat_Controller extends Base_Controller {
     }
 }
 
-// Helper Functions
-function insertSeat($input){
-    ClusterSeats::create(array(
-        'cluster_id'=>$input['cluster'],
-        'seat_title'=>$input['title'],
-    ));        
-}
-
-function removeSeat($input){
-    ClusterSeats::find($input['id'])->delete();
-}
+?>
