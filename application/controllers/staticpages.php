@@ -32,7 +32,7 @@ class StaticPages_Controller extends Base_Controller {
             return Redirect::to('admin')
                 ->with('message', $message);
         } else {
-            $message = "Your message was not delivered! Please try again or contact adminstrator." ;
+            $message = "Your message was not delivered! Please try again or contact adminstrator.";
             return Redirect::to_route('email_index')
                 ->with('email_error', $message)
                 ->with_input();
