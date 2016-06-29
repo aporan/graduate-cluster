@@ -28,7 +28,6 @@ class Seat_Controller extends Base_Controller {
         $validation = ClusterSeats::validate($input);
 
         if ($validation->fails()){
-            
             $clusters = Cluster::order_by('id')->lists('cluster_name', 'id');
             return Redirect::to_route('new_seat')
                 ->with_errors($validation)
