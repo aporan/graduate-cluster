@@ -2,11 +2,11 @@
 
 class Booking extends Eloquent {
 
-    public static $table = 'student_booking';
-    public static $accessbile = array('first_name', 'last_name', 'email', 'mobile', 'sex', 'gov_identifier', 'pillar', 'category', 'booking_from', 'booking_till', 'nationality', 'faculty_id', 'cluster_id', 'seat_id');
+    public static $table = 'booking';
+    public static $accessbile = array('first_name', 'last_name', 'email', 'mobile', 'sex', 'gov_identifier', 'pillar', 'category', 'booking_from', 'booking_till', 'nationality', 'user_id', 'cluster_id', 'seat_id');
 
     public static $rules_basic = array(
-        'studfirst' => 'required|alpha',
+        'studirfst' => 'required|alpha',
         'studlast' => 'required|alpha',
         'gender' => 'required|in:male, female',
         'nation' => 'required',
@@ -53,7 +53,7 @@ class Booking extends Eloquent {
     }
 
     public function reasons(){
-        return $this->has_many('ChangeReasons');
+        return $this->has_many('ChangeReason');
     }
 }
 
