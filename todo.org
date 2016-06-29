@@ -1,6 +1,6 @@
 * Sign Up Form 
   - Remove faculty table and its foreign key relationships
-  - People can only log in as an admin and if they sign up
+  - People can only log in and if they sign up
   - Send email to users for verification
 
 * Password Reset Option
@@ -11,10 +11,10 @@
   - Implement create report button
   - Export as CSV
 
-  | Graduate Cluster | Student: PhD/ Masters | Nationality         | PI | Pillar / Dept  | Availability |
-  |------------------+-----------------------+---------------------+----+----------------+--------------|
-  | Cluster Name     | Student Type          | Student Nationality |    | Student Pillar | Duration     |
-  |                  |                       |                     |    |                |              |
+  | Cluster      | Student: PhD/ Masters | Nationality         | PI | Pillar / Dept  | Availability |
+  |--------------+-----------------------+---------------------+----+----------------+--------------|
+  | Cluster Name | Student Type          | Student Nationality |    | Student Pillar | Duration     |
+  |              |                       |                     |    |                |              |
 
 * Email
   - Automatic email system to different sections of the school
@@ -29,9 +29,11 @@
 ** Removals
   - Remove password and other localhost info from the project files
   - Add it to .gitignore files
-  - Remove Cluster Email
   - Remove Terms and Conditions
 
 ** Questions
   - Should the website only be an internal system? 
+
+
+
   
