@@ -6,7 +6,7 @@ class Cluster extends Eloquent {
     public static $accessible = array('name', 'allocated_seats', 'available_seats', 'level', 'building', 'image_path');
 
     public static $rules = array(
-        'clusname' => 'required|match:/^[A-Za-z0-9\s-_]+$/',
+        'clusname' => 'required|match:/^[A-Za-z0-9\s-_ ]+$/',
         'clusseats' => 'required|integer',
         'cluslev' => 'required|integer',
         'clusbuild' => 'required|alpha_dash',
@@ -14,7 +14,7 @@ class Cluster extends Eloquent {
     );
     
     public static $rules_update = array(
-        'clusname' => 'required|match:/^[A-Za-z0-9\s-_]+$/',
+        'clusname' => 'required|match:/^[A-Za-z0-9\s-_ ]+$/',
         'clusseats' => 'required|integer',
         'cluslev' => 'required|integer',
         'clusbuild' => 'required|alpha_dash',
