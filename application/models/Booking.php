@@ -55,6 +55,10 @@ class Booking extends Eloquent {
     public function reasons(){
         return $this->has_many('ChangeReason');
     }
+
+    public function user(){
+        return $this->belongs_to('User');
+    }
 }
 
 ?>
