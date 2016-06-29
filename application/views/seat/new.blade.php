@@ -12,7 +12,7 @@
     </div>
 
     {{ Form::open('seat/create', 'POST') }}
-        {{ Form::token() }}
+    {{ Form::token() }}
         <div class="row">
           <div class="small-2 large-3 columns">
 	    {{ Form::label('cluster', 'Select Graduate Center:', array('class'=>'inline')) }}
