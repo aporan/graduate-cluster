@@ -5,8 +5,10 @@ Route::get('/', array('as'=>'index', 'uses'=>'staticpages@index'));
 Route::get('admin', array('as'=>'admin_index', 'uses'=>'staticpages@admin_index'));
 Route::get('email/new', array('as'=>'email_index', 'uses'=>'staticpages@email_index'));
 Route::post('email/send', array('before'=>'csrf', 'uses'=>'staticpages@email_send'));
-/* Temp log in page */
-Route::get('login', array('uses'=>'staticpages@login'));
+/*  Log in page */
+Route::get('login', array('uses'=>'authentication@login'));
+Route::get('register', array('as'=>'register', 'uses'=>'authentication@register'));
+Route::post('register/create', array('before'=>'csrf', 'uses'=>'authentication@create'));
 
 /* Cluster Routes */
 Route::get('clusters', array('as'=>'clusters', 'uses'=>'cluster@index'));
