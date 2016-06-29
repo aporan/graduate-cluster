@@ -2,12 +2,11 @@
 
 class Cluster extends Eloquent {
 
-    public static $table = 'graduate_cluster';
-    public static $accessible = array('cluster_name', 'email', 'max_seats', 'level', 'building', 'image_path');
+    public static $table = 'cluster';
+    public static $accessible = array('name', 'allocated_seats', 'level', 'building', 'image_path');
 
     public static $rules = array(
         'clusname' => 'required|match:/^[A-Za-z0-9\s-_]+$/',
-        'clusmail' => 'required|unique:graduate_cluster,email',
         'clusseats' => 'required|integer',
         'cluslev' => 'required|integer',
         'clusbuild' => 'required|alpha_dash',
@@ -31,7 +30,7 @@ class Cluster extends Eloquent {
     }
 
     public function seats(){
-        return $this->has_many('ClusterSeats');
+        return $this->has_many('ClusterSeat');
     }
     
 }
