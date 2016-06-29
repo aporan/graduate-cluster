@@ -39,11 +39,6 @@ class StaticPages_Controller extends Base_Controller {
         }
     }
 
-    // renders login page
-    public function get_login(){
-        return View::make('static.login');
-    }
-
 }
 
 ?>
