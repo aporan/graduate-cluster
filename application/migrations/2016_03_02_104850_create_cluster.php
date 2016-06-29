@@ -13,6 +13,7 @@ class Create_Cluster {
             $table->increments('id');
             $table->string('name', 100);
             $table->integer('allocated_seats')->unsigned();
+            $table->integer('available_seats')->unsigned();
             $table->integer('level')->unsigned();
             $table->integer('building')->unsigned();
             $table->string('image_path');
