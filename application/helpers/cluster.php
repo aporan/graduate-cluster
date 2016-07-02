@@ -1,6 +1,6 @@
 <?php
 
-function uploadImage($name){
+function uploadImage($name) {
     $img_identifier = 'cluster_image';
     $file = Input::file($img_identifier);
     $extension = File::extension($file['name']);
@@ -14,7 +14,7 @@ function uploadImage($name){
     }
 }
 
-function parseImagename($name){
+function parseImageName($name) {
     $temp_name = trim($name);
     $temp_name = strtolower($temp_name);
     $name_array = explode(" ", $temp_name);
@@ -25,14 +25,14 @@ function parseImagename($name){
     return $final_name;
 }
 
-function getImagePath($input){
-    $file_name = parseImagename($input['clusname']);
+function getImagePath($input) {
+    $file_name = parseImageName($input['clusname']);
     $file_extension = uploadImage($file_name);
     $image_path = 'img/uploads/'.$file_name.'.'.$file_extension;
     return $image_path;
 }
 
-function removePhysicalImage($id){
+function removePhysicalImage($id) {
     $this_cluster = Cluster::find($id);
     $stored_path = $this_cluster->image_path;
     $path = 'public/'.$stored_path;
@@ -41,7 +41,7 @@ function removePhysicalImage($id){
     }
 }
 
-function insertCluster($input){
+function insertCluster($input) {
     $image_path = getImagePath($input);
 
     Cluster::create(array(
@@ -54,7 +54,7 @@ function insertCluster($input){
     ));
 }
 
-function updateCluster($input){
+function updateCluster($input) {
     $cluster_id = $input['clus'];
     removePhysicalImage($cluster_id);
     $image_path = getImagePath($input);
@@ -69,7 +69,7 @@ function updateCluster($input){
     ));
 }
 
-function removeCluster($input){
+function removeCluster($input) {
     $id = $input['id'];
     removePhysicalImage($id);
     Cluster::find($id)->delete();
