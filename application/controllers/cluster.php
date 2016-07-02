@@ -28,7 +28,7 @@ class Cluster_Controller extends Base_Controller {
                 ->with_errors($validation)
                 ->with_input();
         } else {
-            insertCluster(Input::all());
+            insertCluster($input);
             $message = 'Success!';
             return Redirect::to_route('clusters')
                 ->with('message', $message);
