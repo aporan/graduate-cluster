@@ -5,10 +5,19 @@ Route::get('/', array('as'=>'index', 'uses'=>'staticpages@index'));
 Route::get('admin', array('as'=>'admin_index', 'uses'=>'staticpages@admin_index'));
 Route::get('email/new', array('as'=>'email_index', 'uses'=>'staticpages@email_index'));
 Route::post('email/send', array('before'=>'csrf', 'uses'=>'staticpages@email_send'));
-/*  Log in page */
-Route::get('login', array('uses'=>'authentication@login'));
-Route::get('register', array('as'=>'register', 'uses'=>'authentication@register'));
-Route::post('register/create', array('before'=>'csrf', 'uses'=>'authentication@create'));
+
+/*  Logging page */
+Route::get('login', array('as'=>'login', 'uses'=>'authentication@view_login'));
+Route::post('login/create', array('before'=>'csrf', 'uses'=>'authentication@login'));
+Route::post('logout', array('before'=>'csrf', 'uses'=>'authentication@logout'));
+Route::get('verify', array('as'=>'verify', 'uses'=>'authentication@view_verify'));
+Route::post('verify/email', array('before'=>'csrf', 'uses'=>'authentication@verify'));
+Route::get('reset', array('as'=>'reset', 'uses'=>'authentication@view_reset'));
+Route::post('reset/password', array('before'=>'csrf', 'uses'=>'authentication@reset'));
+
+/*  Register page */
+Route::get('register', array('as'=>'register', 'uses'=>'authentication@view_register'));
+Route::post('register/create', array('before'=>'csrf', 'uses'=>'authentication@register'));
 
 /* Cluster Routes */
 Route::get('clusters', array('as'=>'clusters', 'uses'=>'cluster@index'));
