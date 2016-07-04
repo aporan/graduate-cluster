@@ -1,6 +1,6 @@
 <?php
 
-class ClusterSeats extends Eloquent {
+class ClusterSeat extends Eloquent {
 
     public static $table = 'cluster_seats';
     public static $accessible = array('number', 'cluster_id');

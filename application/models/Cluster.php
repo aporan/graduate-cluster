@@ -2,7 +2,8 @@
 
 class Cluster extends Eloquent {
 
-    public static $table = 'cluster';
+    public static $table = 'clusters';
+    public static $timestamps = False;
     public static $accessible = array('name', 'allocated_seats', 'available_seats', 'level', 'building', 'image_path');
 
     public static $rules = array(

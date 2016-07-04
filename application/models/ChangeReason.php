@@ -15,7 +15,6 @@ class ChangeReason extends Eloquent {
         'seat' => 'required|integer',
         'bookfro' => 'required|date_format:Y-m-d',
         'booktill'=> 'required|date_format:Y-m-d',
-        'terms' => 'accepted'
     );
 
     public static function validation_reason($data){
