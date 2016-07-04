@@ -1,14 +1,18 @@
 <?php
 
 function insertSeat($input){
-    ClusterSeats::create(array(
+
+    $number = trim($input['title']);
+    
+    ClusterSeat::create(array(
         'cluster_id'=>$input['cluster'],
-        'seat_title'=>$input['title'],
+        'number'=>$number,
+        'available'=>1
     ));        
 }
 
 function removeSeat($input){
-    ClusterSeats::find($input['id'])->delete();
+    ClusterSeat::find($input['id'])->delete();
 }
 
 
