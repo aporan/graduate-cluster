@@ -6,18 +6,9 @@ class Booking_Controller extends Base_Controller {
 
     public $restful = true;
 
-    // renders index page
-    public function get_index() {
-        // TODO: retrieve current logged in faculty;
-        $current_user = Faculty::find(1);
-        $bookings = Booking::where('faculty_id', '=', $current_user->id)->get();
-        return View::make('booking.index')
-            ->with('bookings', $bookings);
-    }
-
     // renders new booking page
     public function get_new() {
-        $all_countries = list_of_countries();
+        $all_countries = listOfCountries();
         return View::make('booking.new_details')
             ->with('countries', $all_countries);
     }
@@ -39,7 +30,17 @@ class Booking_Controller extends Base_Controller {
 
     // returns the booking details page 
     public function get_pagetwo() {
-        $clusters = Cluster::order_by('id')->lists('cluster_name', 'id');
+        if (isAdmin()) {
+            
+            $clusters = Cluster::order_by('id')->lists('name', 'id');
+            
+        } else {
+            
+            $user_id = Auth::user()->id;
+            $clusters = getUserCluster($user_id);
+
+        }
+
         return View::make('booking.new_selection')
             ->with('clusters', $clusters);
     }
@@ -67,7 +68,20 @@ class Booking_Controller extends Base_Controller {
         $session_details = Session::get('pagetwo_details');
         $selected_cluster = $session_details["cluster"];
         $image_path = Cluster::find($selected_cluster)->image_path;
-        $seats = ClusterSeats::where('cluster_id', '=',  $selected_cluster)->lists('seat_title','id');
+
+        if (isAdmin()) {
+
+            $seats = ClusterSeat::where('cluster_id', '=',  $selected_cluster)
+                ->where('available', '=', 1)
+                ->lists('number','id');
+
+        } else {
+            
+            $user_id = Auth::user()->id;
+            $seats = getUserSeats($user_id, $selected_cluster);
+
+        }
+        
         return View::make('booking.new_final')
             ->with('seats', $seats)
             ->with('path', $image_path);
@@ -83,11 +97,13 @@ class Booking_Controller extends Base_Controller {
             return Redirect::to_route('new_pagethree')
                 ->with_errors($validation)
                 ->with_input();
-        } else {
             
-            createBooking($input);
+        } else {
+
+            $user = Auth::user();
+            createBooking($input, $user);
             $message = "Booking Successful!";
-            return Redirect::to_route('bookings')
+            return Redirect::to_route('index')
                 ->with('message', $message);
         }
     }
@@ -112,12 +128,13 @@ class Booking_Controller extends Base_Controller {
                 ->with_errors($validation)
                 ->with_input()
                 ->with('booking', $booking);
+
             
         } else {
 
             updateBooking($input);
             $message = "Booking Updated!";
-            return Redirect::to_route('bookings')
+            return Redirect::to_route('index')
                 ->with('message', $message);
         }
     }
