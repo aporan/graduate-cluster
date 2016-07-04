@@ -44,12 +44,18 @@ function removePhysicalImage($id) {
 function insertCluster($input) {
     $image_path = getImagePath($input);
 
+    $name = ucwords(strtolower(trim($input['clusname'])));
+    $level = trim($input['cluslev']);
+    $building = trim($input['clusbuild']);
+    $tot_seats = trim($input['clusseats']);
+    $ava_seats = trim($input['clusseats']);
+    
     Cluster::create(array(
-        'cluster_name'=>$input['clusname'],
-        'email'=>$input['clusmail'],
-        'max_seats'=>$input['clusseats'],
-        'level'=>$input['cluslev'],
-        'building'=>$input['clusbuild'],
+        'name'=>$name,
+        'allocated_seats'=>$tot_seats,
+        'available_seats'=>$ava_seats,
+        'level'=>$level,
+        'building'=>$building,
         'image_path'=>$image_path
     ));
 }
@@ -59,12 +65,16 @@ function updateCluster($input) {
     removePhysicalImage($cluster_id);
     $image_path = getImagePath($input);
 
+    $name = ucwords(strtolower(trim($input['clusname'])));
+    $level = trim($input['cluslev']);
+    $building = trim($input['clusbuild']);
+    $tot_seats = trim($input['clusseats']);
+
     Cluster::update($cluster_id, array(
-        'cluster_name'=>$input['clusname'],
-        'email'=>$input['clusmail'],
-        'max_seats'=>$input['clusseats'],
-        'level'=>$input['cluslev'],
-        'building'=>$input['clusbuild'],
+        'name'=>$name, 
+        'allocated_seats'=>$tot_seats,
+        'level'=>$level,
+        'building'=>$building,
         'image_path'=>$image_path
     ));
 }
