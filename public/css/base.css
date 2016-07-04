@@ -3,6 +3,12 @@
     padding-top: 17vh;
 }
 
+table { width: 100%; }
+
+hr {
+    border-color: #cccbcb;
+}
+
 /* Navigation Bar */
 .top-bar {
     background: #fff;
@@ -20,7 +26,7 @@
     color: #000;
 }
 
-.top-bar button {
+.top-bar .has-form button, .top-bar .has-form .button {
     padding: 10px 15px 30px 13px;
     font-size: 18px;
     background: #fff;
@@ -36,9 +42,6 @@
 
 .top-bar button:focus { outline: none }
 
-.top-bar .fi-lock {
-    padding-right: 7px;
-}
 
 .top-bar-section {
     color: #000;
@@ -54,7 +57,6 @@
     height: 100%;
     padding: 18px;
 }
-
 
 /* booking page */
 .booking .row {
@@ -135,6 +137,36 @@ div.radio span {
     line-height: 1.25rem;
 }
 
+/* Foundation Icon */
+
+.fi-lock {
+    padding-right: 7px;
+}
+
+.fi-widget {
+    padding-right: 7px;
+}
+
+.fi-plus {
+    padding-right: 7px;
+    font-size: 20px;
+}
+
+.fi-wrench {
+    padding-right: 7px;
+    font-size: 20px;
+}
+
+.fi-results {
+    padding-right: 7px;
+    font-size: 20px;
+}
+
+.fi-mail {
+    padding-right: 7px;
+    font-size: 20px;
+}
+
 /* Button  */
 
 .button.expand.main:hover{
@@ -147,3 +179,12 @@ body {
     background-color: #fafafa;
     background-image: url("../img/p2.png");
 }
+
+/* Accordion */
+
+.accordion .accordion-navigation.active>a, .accordion dd.active>a {
+    background: #cccbcb;
+    color: #222;
+    border-radius: 2px;
+}
+
