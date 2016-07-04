@@ -1,23 +1,28 @@
 <?php
 
-function createBooking($input){
+function createBooking($input, $user){
     $page_one_details = Session::get('pageone_details');
     $page_two_details = Session::get('pagetwo_details');
-    
+
+    $nationality = findCountry($page_one_details['nation']);
+    $firstname = strtolower(trim($page_one_details['studfirst']));
+    $lastname = strtolower(trim($page_one_details['studlast']));
+    $mobile = trim($page_two_details['studmob']);
+    $email = trim($page_two_details['studemail']);
+
     Booking::Create(array(
-        'first_name' => $page_one_details['studfirst'],
-        'last_name'  => $page_one_details['studlast'],
-        'email'      => $page_two_details['studemail'],
-        'mobile'     => $page_two_details['studmob'],
+        'first_name' => $firstname,
+        'last_name'  => $lastname,
+        'email'      => $email,
+        'mobile'     => $mobile,
         'sex'        => $page_one_details['gender'],
         'gov_identifier' => $page_two_details['studgov'],
         'pillar'       => $page_one_details['pillar'],
         'category'     => $page_one_details['studtyp'],
         'booking_from' => $page_two_details['bookfro'],
         'booking_till' => $page_two_details['booktill'],
-        'nationality'  => $page_one_details['nation'],
-        // this needs to be updated; currently using a hardcoded id
-        'faculty_id'   => '1',
+        'nationality'  => $nationality,
+        'user_id'   => $user->id,
         'cluster_id'   => $page_two_details['cluster'],
         'seat_id'      => $input['seat']
     ));
@@ -29,9 +34,13 @@ function createBooking($input){
 
 function updateBooking($input){
     $booking_id = $input['booking'];
+
+    $firstname = strtolower(trim($input['studfirst']));
+    $lastname = strtolower(trim($input['studlast']));
+    
     Booking::update($booking_id, array(
-        'first_name'    =>$input['studfirst'],
-        'last_name'     =>$input['studlast'],
+        'first_name'    =>$firstname,
+        'last_name'     =>$lastname,
         'mobile'        =>$input['studmob'],
         'booking_from'  =>$input['bookfro'],
         'booking_till'  =>$input['booktill']
@@ -77,7 +86,8 @@ function storePageTwoInfo($input){
 }
 
 function updateSeatAvailability($seat_id){
-    $this_seat = ClusterSeats::find($seat_id);
+    #TODO: Update Available Seats
+    $this_seat = ClusterSeat::find($seat_id);
     $this_seat->available = 0;
     $this_seat->save();
 }
@@ -87,7 +97,55 @@ function getClusterName($id){
     return $this_cluster->cluster_name;
 }
 
-function list_of_countries(){
+function isAdmin() {
+    $current_user = Auth::user();
+    $user_type = $current_user->type;
+    $is_admin = ($user_type == 'admin') ? True : False;
+    return $is_admin;
+}
+
+function getUserCluster($user_id) {
+    $assigned_clusters = DB::table('cluster_seats')
+        ->distinct()
+        ->join('seat_managers', 'cluster_seats.id', '=', 'seat_managers.seat_id')
+        ->where('seat_managers.user_id', '=', $user_id)
+        ->order_by('cluster_id')
+        ->get(array('cluster_id'));
+    
+    $clusters = array();
+    
+    foreach($assigned_clusters as $cluster) {
+        $id = $cluster->cluster_id;
+        $clusters[$id] = Cluster::find($id)->name;
+    }
+
+    return $clusters;
+}
+
+function getUserSeats($user_id, $cluster_id) {
+    $assigned_seats = DB::table('cluster_seats')
+        ->join('seat_managers', 'cluster_seats.id', '=', 'seat_managers.seat_id')
+        ->where('seat_managers.user_id', '=', $user_id)
+        ->where('cluster_seats.cluster_id', '=', $cluster_id)
+        ->where('cluster_seats.available', '=', 1)
+        ->get(array('cluster_seats.number', 'cluster_seats.id'));
+        
+    $seats = array();
+
+    foreach($assigned_seats as $seat) {
+        $id = $seat->id;
+        $seats[$id] = $seat->number;
+    }
+
+    return $seats;
+}
+
+function findCountry($country_code) {
+    $countries_array = listOfCountries();
+    return $countries_array[$country_code];
+}
+
+function listOfCountries(){
     $list_of_countries =  array(
     'AF' => 'Afghanistan',
     'AX' => 'Aland Islands',
