@@ -62,13 +62,13 @@
 	      {{ Form::label('bookfro', 'Booking From:', array('class'=>'required', 'style'=>'padding-top: 7px')) }}
 	    </div>
 	    <div class="large-3 columns">
-	      {{ Form::text('bookfro', $booking->booking_from, array('placeholder'=>'yy-mm-dd', 'id'=>'from')) }}
+	      {{ Form::text('bookfro', date_format(date_create(e($booking->booking_from)),'Y-m-d'), array('placeholder'=>'yy-mm-dd', 'id'=>'from')) }}
 	    </div>
 	    <div class="large-2 columns">
 	      {{ Form::label('booktill', 'Booking Till:', array('style'=>'padding-top: 7px;')) }}
 	    </div>
 	    <div class="large-3 columns end">
-	      {{ Form::text('booktill', $booking->booking_till, array('placeholder'=>'yy-mm-dd', 'id'=>'to')) }}
+	      {{ Form::text('booktill', date_format(date_create(e($booking->booking_till)),'Y-m-d'), array('placeholder'=>'yy-mm-dd', 'id'=>'to')) }}
 	    </div>
 	  </div>
 	  

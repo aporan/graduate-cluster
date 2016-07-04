@@ -2,13 +2,13 @@
 
 class Booking extends Eloquent {
 
-    public static $table = 'student_booking';
-    public static $accessbile = array('first_name', 'last_name', 'email', 'mobile', 'sex', 'gov_identifier', 'pillar', 'category', 'booking_from', 'booking_till', 'nationality', 'faculty_id', 'cluster_id', 'seat_id');
+    public static $table = 'bookings';
+    public static $accessbile = array('first_name', 'last_name', 'email', 'mobile', 'sex', 'gov_identifier', 'pillar', 'category', 'booking_from', 'booking_till', 'nationality', 'user_id', 'cluster_id', 'seat_id');
 
     public static $rules_basic = array(
-        'studfirst' => 'required|alpha',
-        'studlast' => 'required|alpha',
-        'gender' => 'required|in:male,female',
+        'studfirst' => 'required|match:/^[A-Za-z\s-_ ]+$/',
+        'studlast' => 'required|match:/^[A-Za-z\s-_ ]+$/',
+        'gender' => 'required|in:male, female',
         'nation' => 'required',
         'pillar' => 'required|in:asd,istd,epd,esd,hass',
         'studtyp' => 'required|in:phd,masters,postdoc,researcher'
@@ -17,7 +17,7 @@ class Booking extends Eloquent {
     public static $rules_details = array(
         'studemail' => 'required|email:unique',
         'studmob' => 'required|integer',
-        'studgov' => 'required|alpha_dash',
+        'studgov' => 'required|alpha_dash|unique:bookings, gov_identifier',
         'bookfro' => 'required|date_format:Y-m-d',
         'booktill'=> 'required|date_format:Y-m-d',
         'cluster' => 'required|integer'
@@ -25,12 +25,11 @@ class Booking extends Eloquent {
 
     public static $rules_final = array(
         'seat' => 'required|integer',
-        'terms' => 'accepted'
     );
 
     public static $rules_update = array(
-        'studfirst' => 'required|alpha',
-        'studlast' => 'required|alpha',
+        'studfirst' => 'required|match:/^[A-Za-z\s-_ ]+$/',
+        'studlast' => 'required|match:/^[A-Za-z\s-_ ]+$/',
         'studmob' => 'required|integer',
         'bookfro' => 'required|date_format:Y-m-d',
         'booktill'=> 'required|date_format:Y-m-d',
@@ -53,7 +52,11 @@ class Booking extends Eloquent {
     }
 
     public function reasons(){
-        return $this->has_many('ChangeReasons');
+        return $this->has_many('ChangeReason');
+    }
+
+    public function user(){
+        return $this->belongs_to('User');
     }
 }
 

@@ -1,35 +1,54 @@
 @layout('base.default')
 
 @section('mainbody')
-    <div class="large-4 large-centered columns page-centre">
-      <div class="login-box">
 
-	<div class="row">
+<div class="row login">
+  <div class="large-5 columns page-centre">
+    <div class="login-box">
+
+      {{ Form::open('login/create', 'POST') }}
+      {{ Form::token() }}
+
+        <div class="row">
 	  <div class="large-12 columns">
-	    <form>
-
-	      <div class="row">
-		<div class="large-12 columns">
-		  <input type="text" name="username" placeholder="Username" />
-		</div>
-	      </div>
-
-	      <div class="row">
-		<div class="large-12 columns">
-		  <input type="password" name="password" placeholder="Password" />
-		</div>
-	      </div>
-
-	      <div class="row">
-		<div class="large-12 large-centered columns">
-		  <input type="submit" class="button expand" value="Log In"/>
-		</div>
-	      </div>
-	      
-	    </form>
+            {{ Form::label('email', 'Email') }}
+	    {{ Form::text('email', Input::old('email')) }}
 	  </div>
-	</div>
-	
-      </div>
+        </div>
+      
+        <div class="row">
+	  <div class="large-12 columns">
+            {{ Form::label('password', 'Password') }}
+	    {{ Form::password('password') }}
+	  </div>
+        </div>
+
+        <div class="row">
+	  <div class="large-12 large-centered columns">
+	    <input type="submit" class="button expand" value="Log In"/>
+	  </div>
+        </div>
+
+      {{ Form::close() }}
+
+        <div class="row">
+	  <div class="large-6 columns">
+	    <p class="left">{{ HTML::link_to_ROUTE('verify', 'Forgot Password?') }}<p>
+	  </div>
+
+          <div class="large-6 columns">
+	    <p class="right">{{ HTML::link_to_ROUTE('register', 'Sign Up for New Account') }}</p>
+	  </div>
+
+        </div>
+      
     </div>
+  </div>
+
+  <div class="large-1 columns page-centre"></div>
+  <div class="large-6 columns page-centre">
+    {{ render('error.validation') }}
+  </div>
+</div>
+{{ render('error.validation_js') }}
 @endsection

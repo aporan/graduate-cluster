@@ -3,7 +3,7 @@
 @section('mainbody')
     <div class="row">
       <div class="small-12 large-12 columns">
-	<h2>{{ $this_cluster->cluster_name }}</h2>
+	<h2>{{ $this_cluster->name }}</h2>
 	<hr/>
       </div>
     </div>
@@ -29,7 +29,7 @@
 	    @foreach($seats as $seat)
    	      <tr>
 		<td>{{ $i++ }}</td>
-		<td>{{ $seat->seat_title }}</td>
+		<td>{{ $seat->number }}</td>
 		<td>
  	          {{ Form::open('seat/delete', 'DELETE', array('style'=>'padding-top:20px;')) }}
   	          {{ Form::hidden('id', e($seat->id)) }}

@@ -23,13 +23,16 @@
 
       <div class="row">
 	<div class="large-4 columns">
-	  {{ Form::email('studemail', null, array('placeholder'=>'Email')) }}
+	  {{ Form::label('studemail', 'Email') }}
+	  {{ Form::email('studemail') }}
 	</div>
 	<div class="large-4 columns">
-	  {{ Form::text('studmob', null, array('placeholder'=>'Mobile')) }}
+          {{ Form::label('studmob', 'Mobile') }}
+	  {{ Form::text('studmob') }}
 	</div>
 	<div class="large-4 columns">
-	  {{ Form::text('studgov', null, array('placeholder'=>'NRIC/FIN')) }}
+          {{ Form::label('studgov', 'NRIC/FIN') }}
+	  {{ Form::text('studgov') }}
 	</div>
       </div>
 

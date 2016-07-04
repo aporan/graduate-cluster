@@ -38,20 +38,6 @@
       </div>
 
       <div class="row">
-	<div class="large-12 columns">
-	  <h4 class="subheader">7. Terms and Conditions </h4>
-	</div>
-      </div>
-
-      <div class="row">
-      	<div class="small-6 large-10 columns">
-      	  {{ Form::checkbox('terms', '1') }}
-	  <span>Please check the terms and condtions before proceeding</span>
-      	</div>
-	<div class="small-6 large-2 columns"></div>
-      </div>
-
-      <div class="row">
 	<div class="large-2 large-offset-10 columns">
 	  {{ Form::submit('SUBMIT', array('class'=>'button expand right')) }}
 	</div>

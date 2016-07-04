@@ -1,6 +1,61 @@
 /* common */
 .page-centre {
-    padding-top: 30vh;
+    padding-top: 17vh;
+}
+
+table { width: 100%; }
+
+hr {
+    border-color: #cccbcb;
+}
+
+/* Navigation Bar */
+.top-bar {
+    background: #fff;
+    box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.07);
+    height: 4.8rem;
+}
+
+.top-bar .name {
+    font-size: 25px;
+    margin: auto;
+    padding: 18px;
+}
+
+.top-bar .name a {
+    color: #000;
+}
+
+.top-bar .has-form button, .top-bar .has-form .button {
+    padding: 10px 15px 30px 13px;
+    font-size: 18px;
+    background: #fff;
+    color: #353131;
+    top: 0px;
+    border-radius: 6px;
+}
+
+.top-bar button:hover {
+    color: #353131;
+    background-color: #e7e7e7;
+}
+
+.top-bar button:focus { outline: none }
+
+
+.top-bar-section {
+    color: #000;
+}
+
+.top-bar-section > ul > .divider {
+    height: 100%;
+    border-right: solid 1.5px #f1f1f1;
+}
+
+.top-bar-section .has-form {
+    background: #fff;
+    height: 100%;
+    padding: 18px;
 }
 
 /* booking page */
@@ -14,19 +69,27 @@ div.radio span {
 }
 
 /* login page */
+.login, .register {
+    margin-left: 7vw;
+    max-width: 72.5rem;
+}
+
 .login-box {
     background: #F0F0F3;
     border: 1px solid #ddd;
-    padding: 40px 20px 0 20px; 
+    padding: 35px 20px 0 20px; 
 }
+
+.login-box a:hover {
+    text-decoration: underline;
+} 
 
 /* Error Alert Box */
 .alert-box {
   background: #f7f7f7;
   color: #333;
   border: none;
-  border-left: 6px solid #008CBA;
-  box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
+  border-left: 7px solid;
 }
 
 .alert-box.success {
@@ -74,6 +137,36 @@ div.radio span {
     line-height: 1.25rem;
 }
 
+/* Foundation Icon */
+
+.fi-lock {
+    padding-right: 7px;
+}
+
+.fi-widget {
+    padding-right: 7px;
+}
+
+.fi-plus {
+    padding-right: 7px;
+    font-size: 20px;
+}
+
+.fi-wrench {
+    padding-right: 7px;
+    font-size: 20px;
+}
+
+.fi-results {
+    padding-right: 7px;
+    font-size: 20px;
+}
+
+.fi-mail {
+    padding-right: 7px;
+    font-size: 20px;
+}
+
 /* Button  */
 
 .button.expand.main:hover{
@@ -86,3 +179,12 @@ body {
     background-color: #fafafa;
     background-image: url("../img/p2.png");
 }
+
+/* Accordion */
+
+.accordion .accordion-navigation.active>a, .accordion dd.active>a {
+    background: #cccbcb;
+    color: #222;
+    border-radius: 2px;
+}
+

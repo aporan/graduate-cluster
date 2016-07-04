@@ -1,0 +1,39 @@
+* Sign Up Form 
+  - Remove faculty table and its foreign key relationships
+  - People can only log in and if they sign up
+  - Send email to users for verification
+
+* Password Reset Option
+  - Password reset form
+  - Password reset verification email 
+
+* Report Table 
+  - Implement create report button
+  - Export as CSV
+
+  | Cluster      | Student: PhD/ Masters | Nationality         | PI | Pillar / Dept  | Availability |
+  |--------------+-----------------------+---------------------+----+----------------+--------------|
+  | Cluster Name | Student Type          | Student Nationality |    | Student Pillar | Duration     |
+  |              |                       |                     |    |                |              |
+
+* Email
+  - Automatic email system to different sections of the school
+  - Email for sign up and password expiration
+
+** Major small operations 
+  - If cluster does not have a seat, do not populate cluster during booking
+  - Remove email field for each clusters
+  - Filter to display bookings 
+  - Update available seats for each cluster when a booking is made
+
+** Removals
+  - Remove password and other localhost info from the project files
+  - Add it to .gitignore files
+  - Remove Terms and Conditions
+
+** Questions
+  - Should the website only be an internal system? 
+
+
+
+  
