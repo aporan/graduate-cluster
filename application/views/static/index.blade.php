@@ -2,24 +2,34 @@
 
 @section('mainbody')
 
-  <div class="page-centre">
     <div class="row">
-      <div class="small-7 large-centered columns">
-	<div class="row">
-	  <div class="small-2 large-6 columns">{{ HTML::link_to_ROUTE('new_booking', 'NEW BOOKING', array(), array('class'=>'button expand main')) }}</div>
-	  <div class="small-2 large-6 columns">{{ HTML::link_to_ROUTE('bookings', 'VIEW BOOKINGS', array(), array('class'=>'button expand main')) }}</div>
-	</div>
+      <div class="large-3 columns">
+        <a class="button expand main" href={{ URL::to_route('new_booking') }}>
+          <i class="fi-plus"></i>NEW BOOKING
+        </a>
+      </div>
+
+      <div class="large-3 columns">
+        <a class="button expand main" href={{ URL::to_route('change_index') }}>
+          <i class="fi-wrench"></i>CHANGE OF DESK
+        </a>
+      </div>
+
+      <div class="large-3 columns">
+        <a class="button expand main" href={{ URL::to_route('admin_index') }}>
+          <i class="fi-results"></i>REPORT PAGE
+        </a>
+      </div>
+
+      <div class="large-3 columns">
+        <a class="button expand main" href={{ URL::to_route('email_index') }}>
+          <i class="fi-mail"></i>SEND EMAILS
+        </a>
       </div>
     </div>
 
-    <div class="row">
-      <div class="small-7 large-centered columns">
-	<div class="row">
-	  <div class="small-2 large-6 columns">{{ HTML::link_to_ROUTE('change_index', 'CHANGE OF DESK', array(), array('class'=>'button expand main')) }}</div>
-	  <div class="small-2 large-6 columns">{{ HTML::link_to_ROUTE('admin_index', 'ADMIN', array(), array('class'=>'button expand main')) }}</div>
-	</div>
-      </div>
-    </div>
-  </div>
+
+    @include('booking.index')
+
 
 @endsection
