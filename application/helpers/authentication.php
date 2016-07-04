@@ -2,13 +2,16 @@
 
 function insertUser($input) {
 
-    $password = $input['password'];
+    $firstname = strtolower(trim($input['firstname']));
+    $lastname = strtolower(trim($input['lastname']));
+    $email = strtolower(trim($input['email']));
+    $password = trim($input['password']);
     $hashed_password = hashPassword($password);
     
     User::create(array(
-        'first_name'=>$input['firstname'],
-        'last_name'=>$input['lastname'],
-        'email'=>$input['email'],
+        'first_name'=>$firstname,
+        'last_name'=>$lastname,
+        'email'=>$email,
         'password'=>$hashed_password,
         'type'=>'general'
     ));
@@ -36,7 +39,7 @@ function checkSession($session_name){
     }
 }
 
-function findUser($email) {
+function registeredUser($email) {
     $user = User::where_email($email)->first();
     $res = ($user) ? True : False;
     return $res;
@@ -50,8 +53,8 @@ function storeUserEmail($email) {
 
 function changePassword($input) {
     $reset_password = Session::get('reset_password');
-    $email = $reset_password['verify_email'];
-    $password = $input['password'];
+    $email = trim($reset_password['verify_email']);
+    $password = trim($input['password']);
     
     $user = User::where_email($email)->first();
     $user_id = $user->id;
