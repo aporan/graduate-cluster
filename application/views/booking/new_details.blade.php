@@ -23,13 +23,16 @@
       
       <div class="row">
 	<div class="large-3 columns">
-	  {{ Form::text('studfirst', Input::old('studfirst'), array('placeholder'=>'First Name')) }}
+          {{ Form::label('studfirst', 'First Name') }}
+	  {{ Form::text('studfirst', Input::old('studfirst')) }}
 	</div>
 	<div class="large-3 columns">
-	  {{ Form::text('studlast', Input::old('studlast'), array('placeholder'=>'Last Name')) }}
+          {{ Form::label('studlast', 'Last Name') }}
+	  {{ Form::text('studlast', Input::old('studlast')) }}
 	</div>
 	<div class="large-6 columns"></div>
       </div>
+
 
       <div class="row radio">
 	<div class="large-1 columns">
@@ -47,7 +50,6 @@
 	</div>
 	<div class="large-3 columns"></div>
       </div>
-
 
       <div class="row">
 	<div class="large-12 columns">
