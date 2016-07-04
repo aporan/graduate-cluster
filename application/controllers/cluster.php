@@ -8,7 +8,7 @@ class Cluster_Controller extends Base_Controller {
 
     // renders list of all clusters
     public function get_index(){
-        $clusters = Cluster::order_by('cluster_name')->get();
+        $clusters = Cluster::order_by('name')->get();
         return View::make('cluster.index')
             ->with('clusters', $clusters);
     }
