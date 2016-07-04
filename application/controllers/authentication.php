@@ -19,13 +19,13 @@ class Authentication_Controller extends Base_Controller {
             
         } else {
             
-            $email = $input['email'];
-            $password = $input['password'];
+            $email = trim($input['email']);
+            $password = trim($input['password']);
             $credentials = array('username'=>$email, 'password'=>$password);
             if (Auth::attempt($credentials)) {
 
                 $user = User::where_email($email)->first();
-                $message = 'Hi <b>'. $user->first_name .'</b>! Glad you could make it.';
+                $message = 'Hi <b>'. ucwords($user->first_name) .'</b>! Glad you could make it.';
                 return Redirect::to_route('index')
                     ->with('message', $message);
 
@@ -82,8 +82,8 @@ class Authentication_Controller extends Base_Controller {
 
         } else {
 
-            $email = $input['email'];
-            if (findUser($email)) {
+            $email = trim($input['email']);
+            if (registeredUser($email)) {
 
                 storeUserEmail($email);
                 return Redirect::to_route('reset');
