@@ -6,24 +6,42 @@ class StaticPages_Controller extends Base_Controller {
 
     public $restful = true;
 
-    // renders the welcome page
     public function get_index(){
-        return View::make('static.index');
+        $cluster_bookings = array();
+        $clusters = DB::table('bookings')->distinct()->get(array('cluster_id'));
+        
+        if (isAdmin()) {
+            foreach ($clusters as $cluster) {
+                $id = $cluster->cluster_id;
+                $cluster_bookings[$id] = Booking::where('cluster_id', '=', $id)->get();
+            }
+
+
+        } else {
+
+            $user_id = Auth::user()->id;
+            foreach($clusters as $cluster) {
+                $id = $cluster->cluster_id;
+                $cluster_bookings[$id] = DB::table('seat_managers')
+                    ->join('bookings', 'bookings.seat_id', '=', 'seat_managers.seat_id')
+                    ->where('seat_managers.user_id', '=', $user_id)
+                    ->where('cluster_id', '=', $id)
+                    ->get();
+            }
+        }
+
+        return View::make('static.index')
+                ->with('cluster_bookings', $cluster_bookings);
     }
 
-    // renders the admin index page
-    public function get_admin_index(){
-        return View::make('static.admin_index');
-    }
+    public function get_admin_index(){  return View::make('static.admin_index');  }
 
-    // renders the email page
     public function get_email_index(){
-        $clusters = Cluster::order_by('id')->lists('cluster_name', 'id');
+        $clusters = Cluster::order_by('id')->lists('name', 'id');
         return View::make('static.email_index')
             ->with('clusters', $clusters);
     }
 
-    // sends a new email after receiving info from the page
     public function post_email_send(){
         $input = Input::all();
         $sent = sendEmail($input);
@@ -38,7 +56,7 @@ class StaticPages_Controller extends Base_Controller {
                 ->with_input();
         }
     }
-
 }
 
 ?>
+
