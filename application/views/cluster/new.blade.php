@@ -15,35 +15,32 @@
         {{ Form::token() }}
           <div class="row">
             <div class="small-2 large-4 columns">
-	      {{ Form::text('clusname', null, array('placeholder'=>'Name')) }}
+              {{ Form::label('clusname', 'Name') }}
+	      {{ Form::text('clusname') }}
 	    </div>
 	    <div class="small-10 large-8 columns"></div>
 	  </div>
 
 	  <div class="row">
             <div class="small-2 large-4 columns">
-              {{ Form::email('clusmail', null, array('placeholder'=>'Email')) }}
+              {{ Form::label('clusbuild', 'Building') }}
+              {{ Form::text('clusbuild') }}
 	    </div>
 	    <div class="small-10 large-8 columns"></div>
 	  </div>
 
 	  <div class="row">
             <div class="small-2 large-4 columns">
-              {{ Form::text('clusbuild', null, array('placeholder'=>'Building')) }}
+              {{ Form::label('cluslev', 'Level') }}
+              {{ Form::text('cluslev') }}
 	    </div>
 	    <div class="small-10 large-8 columns"></div>
 	  </div>
 
 	  <div class="row">
             <div class="small-2 large-4 columns">
-              {{ Form::text('cluslev', null, array('placeholder'=>'Level')) }}
-	    </div>
-	    <div class="small-10 large-8 columns"></div>
-	  </div>
-
-	  <div class="row">
-            <div class="small-2 large-4 columns">
-              {{ Form::text('clusseats', null, array('placeholder'=>'Max Seats')) }}
+              {{ Form::label('clusseats', 'Total Seats') }}
+              {{ Form::text('clusseats') }}
 	    </div>
 	    <div class="small-10 large-8 columns"></div>
 	  </div>
