@@ -6,7 +6,7 @@ class StaticPages_Controller extends Base_Controller {
 
     public $restful = true;
 
-    public function get_index(){
+    public function get_index() {
         $cluster_bookings = array();
         $clusters = DB::table('bookings')->distinct()->get(array('cluster_id'));
         
@@ -34,15 +34,25 @@ class StaticPages_Controller extends Base_Controller {
                 ->with('cluster_bookings', $cluster_bookings);
     }
 
-    public function get_admin_index(){  return View::make('static.admin_index');  }
+    public function get_admin_index() {  return View::make('static.admin_index');  }
 
-    public function get_email_index(){
+    public function get_email_index() {
         $clusters = Cluster::order_by('id')->lists('name', 'id');
         return View::make('static.email_index')
             ->with('clusters', $clusters);
     }
 
-    public function post_email_send(){
+    public function get_view_report() {
+        $clusters = Cluster::order_by('id')->lists('name', 'id');
+        return View::make('static.report')
+            ->with('clusters', $clusters);
+    }
+
+    public function post_generate_report() {
+        return Redirect::to_route('report');
+    }
+
+    public function post_email_send() {
         $input = Input::all();
         $sent = sendEmail($input);
         if ($sent) {
