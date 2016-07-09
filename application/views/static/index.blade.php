@@ -16,7 +16,7 @@
       </div>
 
       <div class="large-3 columns">
-        <a class="button expand main" href={{ URL::to_route('admin_index') }}>
+        <a class="button expand main" href={{ URL::to_route('report') }}>
           <i class="fi-results"></i>REPORT PAGE
         </a>
       </div>
