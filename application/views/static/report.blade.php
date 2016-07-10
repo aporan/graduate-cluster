@@ -25,7 +25,7 @@
 
 	<div class="row">
       	  <div class="small-6 large-10 columns">
-      	    {{ Form::checkbox('sendall', '1') }}
+      	    {{ Form::checkbox('all', '1') }}
 	    <span>Generate <b>Combined</b> Report</span>
       	  </div>
 	  <div class="small-6 large-2 columns"></div>
