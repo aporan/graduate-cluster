@@ -49,7 +49,39 @@ class StaticPages_Controller extends Base_Controller {
     }
 
     public function post_generate_report() {
-        return Redirect::to_route('report');
+        $input = Input::all();
+        $all = $input['all'];
+        
+        if ($all) {
+            
+            $headers = array(
+                'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
+                'Content-type'        => 'text/csv',
+                'Content-Disposition' => 'attachment; filename='.date('jS\_F\_Y').'.csv',
+                'Expires'             => '0',
+                'Pragma'              => 'public'
+            );
+
+            $list = Booking::all();
+
+            # add headers for each column in the CSV download
+            # array_unshift($list, array_keys($list[0]));
+
+            $FH = fopen('php://output', 'w');
+            foreach ($list as $row) {
+                $columns = (array) $row;
+                $values = array_values($columns['attributes']);
+                fputcsv($FH, $values);
+            }
+            fclose($FH);
+        
+            return Response::make($FH, 200, $headers);
+            
+        } else {
+
+            return Redirect::to_route('report');
+        }
+        
     }
 
     public function post_email_send() {
