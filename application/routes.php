@@ -50,6 +50,7 @@ Route::group(array('before'=>'admin|auth'), function() {
     Route::get('manager/(:any)/assign', array('as'=>'assign_users', 'uses'=>'usermanager@view_assign'));
     Route::post('manager/assign', array('before'=>'csrf', 'uses'=>'usermanager@assign'));
     Route::post('manager/unassign', array('before'=>'csrf', 'uses'=>'usermanager@unassign'));
+    Route::delete('manager/delete', array('uses'=>'usermanager@remove'));
 
     /* Cluster Routes */
     Route::get('clusters', array('as'=>'clusters', 'uses'=>'cluster@index'));
@@ -68,7 +69,6 @@ Route::group(array('before'=>'admin|auth'), function() {
     /* Report Routes */
     Route::get('report', array('as'=>'report', 'uses'=>'staticpages@view_report'));
     Route::post('report/view', array('before'=>'csrf', 'uses'=>'staticpages@generate_report'));
-    
     
 });
 
