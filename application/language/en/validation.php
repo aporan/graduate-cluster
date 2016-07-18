@@ -132,9 +132,12 @@ return array(
         'seat' => '<code><b>Seat</b></code>',
         'terms' => '<code><b>Terms and Conditions</b></code>',
         'areason' => '<code><b>Reason for Request</b></code>',
+        
+        /* Logging and Registration */
         'password' => '<code><b>Password</b></code>',
         'firstname' => '<code><b>First Name</b></code>',
         'lastname' => '<code><b>Last Name</b></code>',
         'email' => '<code><b>Email</b></code>',
+        'type' => '<code><b>User Type</b></code>'
     ),
 );
