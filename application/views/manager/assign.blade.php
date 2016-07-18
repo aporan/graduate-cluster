@@ -6,7 +6,7 @@
 
   <div class="row">
     <div class="small-12 large-12 columns">
-      <h2>Assign Seats</h2>
+      <h2>Assign Seats to <i>{{ getUserName($user) }}</i></h2>
       <hr/>
     </div>
   </div>
