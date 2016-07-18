@@ -47,7 +47,7 @@ class Seat_Controller extends Base_Controller {
     public function delete_remove(){
         removeSeat(Input::all());
         $cluster_id = Input::get('clusid');
-        $message = 'Seat was successfull removed!';
+        $message = 'Seat was successfully removed!';
         return Redirect::to_route('cluster_seats', array($cluster_id))
             ->with('message', $message);
     }
