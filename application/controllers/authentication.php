@@ -56,9 +56,8 @@ class Authentication_Controller extends Base_Controller {
             insertUser($input);
             sendRegistrationEmail($input);
             $message = "Registration is successful! Please login to access the website";
-            return Redirect::to_route('login')
+            return Redirect::to_route('admin')
                 ->with('message', $message);
-              
         }
     }
 
