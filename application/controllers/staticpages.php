@@ -50,9 +50,8 @@ class StaticPages_Controller extends Base_Controller {
 
     public function post_generate_report() {
         $input = Input::all();
-        $all = $input['all'];
         
-        if ($all) {
+        if (array_key_exists('all', $input)) {
             
             $headers = array(
                 'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
@@ -64,10 +63,11 @@ class StaticPages_Controller extends Base_Controller {
 
             $list = Booking::all();
 
-            # add headers for each column in the CSV download
-            # array_unshift($list, array_keys($list[0]));
+            $columns = (array) $list[0];
+            $values = array_keys($columns['attributes']);
 
             $FH = fopen('php://output', 'w');
+            fputcsv($FH, $values);
             foreach ($list as $row) {
                 $columns = (array) $row;
                 $values = array_values($columns['attributes']);
@@ -79,7 +79,31 @@ class StaticPages_Controller extends Base_Controller {
             
         } else {
 
-            return Redirect::to_route('report');
+            $cluster_id = $input['cluster'];
+            $cluster = Cluster::find($cluster_id);
+            $list = Booking::where('cluster_id', '=', $cluster_id)->get();
+
+            $headers = array(
+                'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
+                'Content-type'        => 'text/csv',
+                'Content-Disposition' => 'attachment; filename='.strtolower($cluster->name).'_'.date('jS\_F\_Y').'.csv',
+                'Expires'             => '0',
+                'Pragma'              => 'public'
+            );
+
+            $columns = (array) $list[0];
+            $values = array_keys($columns['attributes']);
+            
+            $FH = fopen('php://output', 'w');
+            fputcsv($FH, $values);
+            foreach ($list as $row) {
+                $columns = (array) $row;
+                $values = array_values($columns['attributes']);
+                fputcsv($FH, $values);
+            }
+            fclose($FH);
+        
+            return Response::make($FH, 200, $headers);
         }
         
     }
