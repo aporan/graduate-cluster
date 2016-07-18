@@ -7,13 +7,14 @@ function insertUser($input) {
     $email = strtolower(trim($input['email']));
     $password = trim($input['password']);
     $hashed_password = hashPassword($password);
+    $type= $input['type'];
     
     User::create(array(
         'first_name'=>$firstname,
         'last_name'=>$lastname,
         'email'=>$email,
         'password'=>$hashed_password,
-        'type'=>'general'
+        'type'=>$type
     ));
 }
 
