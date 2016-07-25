@@ -32,13 +32,19 @@ function getImagePath($input) {
     return $image_path;
 }
 
-function removePhysicalImage($id) {
-    $this_cluster = Cluster::find($id);
+function removePhysicalImage($this_cluster) {
     $stored_path = $this_cluster->image_path;
     $path = 'public/'.$stored_path;
     if (file_exists($path)){
         File::delete($path);
     }
+}
+
+function checkAvailableSeats($this_cluster, $new_total_seats) {
+    $current_tot_seats = $this_cluster->allocated_seats;
+    $ava_seats = $this_cluster->available_seats;
+    $res = ($ava_seats > $new_tot_seats ? True : False);
+    return $res;
 }
 
 function insertCluster($input) {
@@ -52,8 +58,9 @@ function insertCluster($input) {
     
     Cluster::create(array(
         'name'=>$name,
-        'allocated_seats'=>$tot_seats,
-        'available_seats'=>$ava_seats,
+        'booked_seats'=>0,
+        'allocated_seats'=>$ava_seats,
+        'available_seats'=>0,
         'level'=>$level,
         'building'=>$building,
         'image_path'=>$image_path
@@ -62,13 +69,16 @@ function insertCluster($input) {
 
 function updateCluster($input) {
     $cluster_id = $input['clus'];
-    removePhysicalImage($cluster_id);
-    $image_path = getImagePath($input);
+    $this_cluster = Cluster::find($cluster_id);
+    removePhysicalImage($this_cluster);
 
+    $image_path = getImagePath($input);
     $name = ucwords(strtolower(trim($input['clusname'])));
     $level = trim($input['cluslev']);
     $building = trim($input['clusbuild']);
     $tot_seats = trim($input['clusseats']);
+
+    if (checkAvailableSeats($this_cluster, $tot_seats)) {  return False;  }
 
     Cluster::update($cluster_id, array(
         'name'=>$name, 
@@ -77,12 +87,13 @@ function updateCluster($input) {
         'building'=>$building,
         'image_path'=>$image_path
     ));
+    return True;
 }
 
 function removeCluster($input) {
-    $id = $input['id'];
-    removePhysicalImage($id);
-    Cluster::find($id)->delete();
+    $this_cluster = Cluster::find($input['id']);
+    removePhysicalImage($this_cluster);
+    $this_cluster->delete();
 }
 
 ?>
