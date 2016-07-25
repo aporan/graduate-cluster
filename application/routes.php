@@ -9,9 +9,6 @@ Route::post('verify/email', array('before'=>'csrf', 'uses'=>'authentication@veri
 Route::get('reset', array('as'=>'reset', 'uses'=>'authentication@view_reset'));
 Route::post('reset/password', array('before'=>'csrf', 'uses'=>'authentication@reset'));
 
-/*  Register page */
-Route::get('register', array('as'=>'register', 'uses'=>'authentication@view_register'));
-Route::post('register/create', array('before'=>'csrf', 'uses'=>'authentication@register'));
 
 Route::group(array('before'=>'auth'), function() {
     /* Static Pages */
@@ -36,17 +33,24 @@ Route::group(array('before'=>'auth'), function() {
     Route::get('requestchange/(:any)/new', array('as'=>'new_change', 'uses'=>'requestchange@new'));
     Route::post('requestchange/pageone', array('before'=>'csrf', 'uses'=>'requestchange@pageone'));
     Route::post('requestchange/update', array('before'=>'csrf', 'uses'=>'requestchange@update'));
+
+    
 });
 
 Route::group(array('before'=>'admin|auth'), function() {
 
     Route::get('admin', array('as'=>'admin_index', 'uses'=>'staticpages@admin_index'));
 
+    /*  Register page */
+    Route::get('register', array('as'=>'register', 'uses'=>'authentication@view_register'));
+    Route::post('register/create', array('before'=>'csrf', 'uses'=>'authentication@register'));
+
     /* User management page */
     Route::get('manager', array('as'=>'manager_index', 'uses'=>'usermanager@index'));
     Route::get('manager/(:any)/assign', array('as'=>'assign_users', 'uses'=>'usermanager@view_assign'));
     Route::post('manager/assign', array('before'=>'csrf', 'uses'=>'usermanager@assign'));
     Route::post('manager/unassign', array('before'=>'csrf', 'uses'=>'usermanager@unassign'));
+    Route::delete('manager/delete', array('uses'=>'usermanager@remove'));
 
     /* Cluster Routes */
     Route::get('clusters', array('as'=>'clusters', 'uses'=>'cluster@index'));
@@ -61,6 +65,10 @@ Route::group(array('before'=>'admin|auth'), function() {
     Route::get('seat/new', array('as'=>'new_seat', 'uses'=>'seat@new'));
     Route::post('seat/create', array('before'=>'csrf', 'uses'=>'seat@create'));
     Route::delete('seat/delete', array('uses'=>'seat@remove'));
+
+    /* Report Routes */
+    Route::get('report', array('as'=>'report', 'uses'=>'staticpages@view_report'));
+    Route::post('report/view', array('before'=>'csrf', 'uses'=>'staticpages@generate_report'));
     
 });
 

@@ -43,10 +43,25 @@
 	    {{ Form::password('password_confirmation') }}
 	  </div>
         </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            {{ Form::label('type', 'User Type') }}
+          </div>
+          <div class="large-4 columns">
+            {{ Form::radio('type', 'admin') }}<span>Admin</span>
+          </div>
+	  <div class="large-4 columns">
+	    {{ Form::radio('type', 'general') }}<span>General</span>
+	  </div>
+          <div class="large-4 columns">
+            {{ Form::radio('type', 'professor') }}<span>Professor</span>
+          </div>
+        </div>
           
         <div class="row">
 	  <div class="large-12 large-centered columns">
-	    <input type="submit" class="button expand" value="Log In"/>
+	    <input type="submit" class="button expand" value="REGISTER"/>
 	  </div>
         </div>
 	

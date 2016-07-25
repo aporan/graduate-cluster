@@ -60,4 +60,16 @@ function getClusterName($id) {
     return $name;
 }
 
+function getUserName($id) {
+    $user = User::find($id);
+    $first_name = $user->first_name;
+    $last_name = $user->last_name;
+    $name = ucwords($first_name).' '.ucwords($last_name);
+    return $name;
+}
+
+function removeUser($input) {
+    User::find($input['id'])->delete();
+}
+
 ?>

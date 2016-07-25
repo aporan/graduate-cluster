@@ -14,7 +14,8 @@ class User extends Eloquent {
         'firstname' => 'required|match:/^[A-Za-z0-9\s-_ ]+$/',
         'lastname' => 'required|match:/^[A-Za-z0-9\s-_ ]+$/',
         'email' => 'required|unique: users, email',
-        'password'=>'required|confirmed|alpha_num|min:5'
+        'password'=>'required|confirmed|alpha_num|min:5',
+        'type' => 'required|in:admin, general, professor'
     );
 
     public static $rules_verify_email = array(

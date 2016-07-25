@@ -9,9 +9,11 @@ class UserManager_Controller extends Base_Controller {
     public function get_index() {
         $admins = User::where('type', '=', 'admin')->get();
         $generals = User::where('type', '=', 'general')->get();
+        $professors = User::where('type', '=', 'professor')->get();
 
         return View::make('manager.index')
             ->with('admins', $admins)
+            ->with('professors', $professors)
             ->with('generals', $generals);
     }
 
@@ -41,6 +43,14 @@ class UserManager_Controller extends Base_Controller {
         $input = Input::all();
         unassignSeats($input);
         return Redirect::to_route('manager_index');
+    }
+
+    public function delete_remove() {
+        removeUser(Input::all());
+        $message = 'User was successfully removed!';
+        return Redirect::to_route('manager_index')
+            ->with('message', $message);
+        
     }
 
 

@@ -36,9 +36,6 @@
 	    <p class="left">{{ HTML::link_to_ROUTE('verify', 'Forgot Password?') }}<p>
 	  </div>
 
-          <div class="large-6 columns">
-	    <p class="right">{{ HTML::link_to_ROUTE('register', 'Sign Up for New Account') }}</p>
-	  </div>
 
         </div>
       

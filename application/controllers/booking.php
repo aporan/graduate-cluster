@@ -6,14 +6,12 @@ class Booking_Controller extends Base_Controller {
 
     public $restful = true;
 
-    // renders new booking page
     public function get_new() {
         $all_countries = listOfCountries();
         return View::make('booking.new_details')
             ->with('countries', $all_countries);
     }
 
-    // stores the basic info in a session 
     public function post_pageone() {
         $input = Input::all();
         $validation = Booking::validation_basic($input);
@@ -28,7 +26,6 @@ class Booking_Controller extends Base_Controller {
         }
     }
 
-    // returns the booking details page 
     public function get_pagetwo() {
         if (isAdmin()) {
             
@@ -45,14 +42,13 @@ class Booking_Controller extends Base_Controller {
             ->with('clusters', $clusters);
     }
 
-    // stores the booking details in a session 
     public function post_pagetwo() {
         $input = Input::all();
         $validation = Booking::validation_details($input);
 
         if ($validation->fails()) {
             
-            $clusters = Cluster::order_by('id')->lists('cluster_name', 'id');
+            $clusters = Cluster::order_by('id')->lists('name', 'id');
             return Redirect::to_route('new_pagetwo')
                 ->with_errors($validation)
                 ->with_input();
@@ -63,7 +59,6 @@ class Booking_Controller extends Base_Controller {
         }
     }
 
-    // get final page
     public function get_pagethree() {
         $session_details = Session::get('pagetwo_details');
         $selected_cluster = $session_details["cluster"];
@@ -87,7 +82,6 @@ class Booking_Controller extends Base_Controller {
             ->with('path', $image_path);
     }
 
-    // creates an entry in the booking table
     public function post_create() {
         $input = Input::all();
         $validation = Booking::validation_final($input);
@@ -108,14 +102,12 @@ class Booking_Controller extends Base_Controller {
         }
     }
 
-    // creates an edit page for individual booking entry
     public function get_edit($id) {
         $booking = Booking::find($id);
         return View::make('booking.edit')
             ->with('booking', $booking);
     }
 
-    // updates individual booking entry
     public function put_update() {
         $input = Input::all();
         $validation = Booking::validation_update($input);

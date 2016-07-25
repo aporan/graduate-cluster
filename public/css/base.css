@@ -74,6 +74,10 @@ div.radio span {
     max-width: 72.5rem;
 }
 
+.register span {
+    padding-left: 7px;
+}
+
 .login-box {
     background: #F0F0F3;
     border: 1px solid #ddd;

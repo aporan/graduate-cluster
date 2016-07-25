@@ -20,7 +20,9 @@ function sendEmail($input) {
     
     $subject = 'Notification from Graduate Cluster Office';
     $message = $text;
-    $headers = 'From: webmaster@example.com' . "\r\n" .
+    $headers = "MIME-Version: 1.0" . "\r\n" .
+        "Content-type:text/html;charset=UTF-8" . "\r\n" .
+        'From: webmaster@example.com' . "\r\n" .
         'Reply-To: webmaster@example.com' . "\r\n" .
         'X-Mailer: PHP/';
 
