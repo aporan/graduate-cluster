@@ -12,6 +12,7 @@ class Create_Cluster {
         Schema::create('clusters', function($table){
             $table->increments('id');
             $table->string('name', 100);
+            $table->integer('booked_seats')->unsigned();
             $table->integer('allocated_seats')->unsigned();
             $table->integer('available_seats')->unsigned();
             $table->integer('level')->unsigned();
