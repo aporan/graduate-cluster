@@ -4,7 +4,7 @@ class Cluster extends Eloquent {
 
     public static $table = 'clusters';
     public static $timestamps = False;
-    public static $accessible = array('name', 'allocated_seats', 'available_seats', 'level', 'building', 'image_path');
+    public static $accessible = array('name', 'booked_seats', 'allocated_seats', 'available_seats', 'level', 'building', 'image_path');
 
     public static $rules = array(
         'clusname' => 'required|match:/^[A-Za-z0-9\s-_ ]+$/',
