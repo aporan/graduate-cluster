@@ -26,7 +26,20 @@ function createBooking($input, $user){
         'cluster_id'   => $page_two_details['cluster'],
         'seat_id'      => $input['seat']
     ));
-    updateSeatAvailability($input['seat']);
+    
+    $email_input = array(
+        'firstname' =>$firstname,
+        'lastname'  =>$lastname,
+        'contact'   =>$mobile,
+        'email'     =>$email,
+        'cluster_id'=>$page_two_details['cluster'],
+        'seat_id'   =>$input['seat'],
+        'bfrom'     =>$page_two_details['bookfro'],
+        'btill'     =>$page_two_details['booktill'],
+    );
+    
+    sendEmail($email_input);
+    updateSeatAvailability($input['seat'], $page_two_details['cluster']);
     checkSession('pageone_details');
     checkSession('pagetwo_details');
     
@@ -85,16 +98,63 @@ function storePageTwoInfo($input){
     return $temp_array;
 }
 
-function updateSeatAvailability($seat_id){
-    #TODO: Update Available Seats
+function updateSeatAvailability($seat_id, $cluster_id) {
+    $this_cluster = Cluster::find($cluster_id);
+    $booked_seats = $this_cluster->booked_seats;
+    $this_cluster->booked_seats = $booked_seats + 1;
+    $this_cluster->save();
+    
     $this_seat = ClusterSeat::find($seat_id);
     $this_seat->available = 0;
     $this_seat->save();
 }
 
+function sendEmail($input) {
+
+    $to = 'ahnaf_siddiqi@mymail.sutd.edu.sg, ahnafsidd@gmail.com';
+    $subject = 'Booking Confirmed';
+    $headers = "MIME-Version: 1.0" . "\r\n" .
+        "Content-type:text/html;charset=UTF-8" . "\r\n" .
+        'From: webmaster@example.com' . "\r\n" .
+        'Reply-To: webmaster@example.com' . "\r\n" .
+        'X-Mailer: PHP/';
+
+    $message =
+        'Hi there!'.
+        "<br/>".
+        "<br/>".
+        '<b>Your booking has been confirmed.</b>'.
+        "<br/>".
+        "<br/>".
+        'Name: '.ucwords($input['firstname']).' '.ucwords($input['lastname']). "<br/>".
+        'Contact: '.$input['contact']. "<br/>".
+        'Email: '.$input['email']. "<br/>".
+        "<br/>".
+        '<b>Cluster</b>: '.getClusterName($input['cluster_id']). "<br/>".
+        '<b>Seat Number</b>: '.getSeatNumber($input['seat_id']). "<br/>".
+        "<br/>".
+        'Booking Starts From: '.$input['bfrom']. "<br/>".
+        'Booking Ends At: '.$input['btill'].
+        "<br/>".
+        "<br/>".
+        'Please contact us at xxxx@xxxx.com if something is missing or you need to change something.'.
+        "<br/>".
+        "<br/>".
+        'Thank You,'.
+        "<br/>".
+        'Graduate Office.';
+
+    return mail($to, $subject, $message, $headers);
+}
+
 function getClusterName($id){
     $this_cluster = Cluster::find($id);
-    return $this_cluster->cluster_name;
+    return $this_cluster->name;
+}
+
+function getSeatNumber($id){
+    $this_seat = ClusterSeat::find($id);
+    return $this_seat->number;
 }
 
 function isAdmin() {
