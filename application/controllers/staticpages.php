@@ -112,7 +112,7 @@ class StaticPages_Controller extends Base_Controller {
         $input = Input::all();
         $sent = sendEmail($input);
         if ($sent) {
-            $message = "Your email has been delivered!";
+            $message = "<code><b>Email</b></code> is delivered!";
             return Redirect::to('admin')
                 ->with('message', $message);
         } else {
