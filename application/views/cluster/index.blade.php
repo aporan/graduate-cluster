@@ -28,9 +28,11 @@
 	<thead>
 	  <tr>
 	    <th width="25%">Name</th>
-	    <th class="text-center" width="10%">Building</th>
-	    <th class="text-center" width="10%">Level</th>
-	    <th class="text-center" width="10%">Total Seats</th>
+	    <th class="text-center">Building</th>
+	    <th class="text-center">Level</th>
+            <th class="text-center">Booked Seats</th>
+            <th class="text-center">Available Seats</th>
+	    <th class="text-center">Total Seat Capacity</th>
             <th></th>
             <th></th>
             <th></th>
@@ -42,6 +44,8 @@
 	      <td>{{ HTML::link_to_route('edit_cluster', e($cluster->name), array($cluster->id)) }}</td>
 	      <td class="text-center">{{ e($cluster->building) }}</td>
 	      <td class="text-center">{{ e($cluster->level) }}</td>
+              <td class="text-center">{{ e($cluster->booked_seats) }}</td>
+              <td class="text-center">{{ e($cluster->available_seats) }}</td>
 	      <td class="text-center">{{ e($cluster->allocated_seats) }}</td>
 	      <td>
 		{{ HTML::link_to_route('cluster_seats', 'Seats', array($cluster->id), array('class'=>'button tiny round right', 'style'=>'margin-bottom:0px; margin-left:30%;' )) }}
