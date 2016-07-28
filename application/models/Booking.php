@@ -8,7 +8,7 @@ class Booking extends Eloquent {
     public static $rules_basic = array(
         'studfirst' => 'required|match:/^[A-Za-z\s-_ ]+$/',
         'studlast' => 'required|match:/^[A-Za-z\s-_ ]+$/',
-        'gender' => 'required|in:male, female',
+        'gender' => 'required|in:male,female',
         'nation' => 'required',
         'pillar' => 'required|in:asd,istd,epd,esd,hass',
         'studtyp' => 'required|in:phd,masters,postdoc,researcher'
@@ -17,7 +17,7 @@ class Booking extends Eloquent {
     public static $rules_details = array(
         'studemail' => 'required|email:unique',
         'studmob' => 'required|integer',
-        'studgov' => 'required|alpha_dash|unique:bookings, gov_identifier',
+        'studgov' => 'required|alpha_dash|unique:bookings,gov_identifier',
         'bookfro' => 'required|date_format:Y-m-d',
         'booktill'=> 'required|date_format:Y-m-d',
         'cluster' => 'required|integer'
