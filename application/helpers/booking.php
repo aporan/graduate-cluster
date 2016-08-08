@@ -55,9 +55,18 @@ function updateBooking($input){
         'first_name'    =>$firstname,
         'last_name'     =>$lastname,
         'mobile'        =>$input['studmob'],
-        'booking_from'  =>$input['bookfro'],
         'booking_till'  =>$input['booktill']
     ));
+
+    $email_input = array(
+        'firstname' =>$firstname,
+        'lastname'  =>$lastname,
+        'contact'   =>$input['studmob'],
+        'btill'     =>$input['booktill'], 
+    );
+
+    sendEmail($email_input, True);
+
 }
 
 function checkSession($session_name){
@@ -109,7 +118,7 @@ function updateSeatAvailability($seat_id, $cluster_id) {
     $this_seat->save();
 }
 
-function sendEmail($input) {
+function sendEmail($input, $updated=False) {
 
     $to = 'ahnaf_siddiqi@mymail.sutd.edu.sg, ahnafsidd@gmail.com';
     $subject = 'Booking Confirmed';
@@ -119,30 +128,55 @@ function sendEmail($input) {
         'Reply-To: webmaster@example.com' . "\r\n" .
         'X-Mailer: PHP/';
 
-    $message =
-        'Hi there!'.
-        "<br/>".
-        "<br/>".
-        '<b>Your booking has been confirmed.</b>'.
-        "<br/>".
-        "<br/>".
-        'Name: '.ucwords($input['firstname']).' '.ucwords($input['lastname']). "<br/>".
-        'Contact: '.$input['contact']. "<br/>".
-        'Email: '.$input['email']. "<br/>".
-        "<br/>".
-        '<b>Cluster</b>: '.getClusterName($input['cluster_id']). "<br/>".
-        '<b>Seat Number</b>: '.getSeatNumber($input['seat_id']). "<br/>".
-        "<br/>".
-        'Booking Starts From: '.$input['bfrom']. "<br/>".
-        'Booking Ends At: '.$input['btill'].
-        "<br/>".
-        "<br/>".
-        'Please contact us at xxxx@xxxx.com if something is missing or you need to change something.'.
-        "<br/>".
-        "<br/>".
-        'Thank You,'.
-        "<br/>".
-        'Graduate Office.';
+    if ($updated){
+
+        $message =
+            'Hi there!'.
+            "<br/>".
+            "<br/>".
+            '<b>Your booking has been updated.</b>'.
+            "<br/>".
+            "<br/>".
+            'Name: '.ucwords($input['firstname']).' '.ucwords($input['lastname']). "<br/>".
+            'Contact: '.$input['contact']. "<br/>".
+            "<br/>".
+            'New Booking Ends At: '.$input['btill'].
+            "<br/>".
+            "<br/>".
+            'Please contact us at xxxx@xxxx.com if something is missing or you need to change something.'.
+            "<br/>".
+            "<br/>".
+            'Thank You,'.
+            "<br/>".
+            'Graduate Office.';
+
+    } else {
+
+        $message =
+            'Hi there!'.
+            "<br/>".
+            "<br/>".
+            '<b>Your booking has been confirmed.</b>'.
+            "<br/>".
+            "<br/>".
+            'Name: '.ucwords($input['firstname']).' '.ucwords($input['lastname']). "<br/>".
+            'Contact: '.$input['contact']. "<br/>".
+            'Email: '.$input['email']. "<br/>".
+            "<br/>".
+            '<b>Cluster</b>: '.getClusterName($input['cluster_id']). "<br/>".
+            '<b>Seat Number</b>: '.getSeatNumber($input['seat_id']). "<br/>".
+            "<br/>".
+            'Booking Starts From: '.$input['bfrom']. "<br/>".
+            'Booking Ends At: '.$input['btill'].
+            "<br/>".
+            "<br/>".
+            'Please contact us at xxxx@xxxx.com if something is missing or you need to change something.'.
+            "<br/>".
+            "<br/>".
+            'Thank You,'.
+            "<br/>".
+            'Graduate Office.';
+    }
 
     return mail($to, $subject, $message, $headers);
 }
