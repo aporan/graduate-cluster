@@ -27,13 +27,12 @@
       <table>
 	<thead>
 	  <tr>
-	    <th width="25%">Name</th>
+	    <th>Name</th>
 	    <th class="text-center">Building</th>
 	    <th class="text-center">Level</th>
             <th class="text-center">Booked Seats</th>
-            <th class="text-center">Available Seats</th>
+            <th class="text-center">Registered Seats</th>
 	    <th class="text-center">Total Seat Capacity</th>
-            <th></th>
             <th></th>
             <th></th>
 	  </tr>

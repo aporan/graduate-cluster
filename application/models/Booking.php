@@ -31,7 +31,6 @@ class Booking extends Eloquent {
         'studfirst' => 'required|match:/^[A-Za-z\s-_ ]+$/',
         'studlast' => 'required|match:/^[A-Za-z\s-_ ]+$/',
         'studmob' => 'required|integer',
-        'bookfro' => 'required|date_format:Y-m-d',
         'booktill'=> 'required|date_format:Y-m-d',
     );
 
@@ -57,6 +56,14 @@ class Booking extends Eloquent {
 
     public function user(){
         return $this->belongs_to('User');
+    }
+
+    public function seat(){
+        return $this->belongs_to('ClusterSeat');
+    }
+
+    public function cluster(){
+        return $this->belongs_to('Cluster');
     }
 }
 
