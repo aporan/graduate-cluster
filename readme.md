@@ -1,2 +1,2 @@
-# Graduate Studies Cluster Booking System
+# Graduate Cluster Seat Allocation Portal
 
