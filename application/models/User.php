@@ -13,7 +13,7 @@ class User extends Eloquent {
     public static $rules_registration = array(
         'firstname' => 'required|match:/^[A-Za-z0-9\s-_ ]+$/',
         'lastname' => 'required|match:/^[A-Za-z0-9\s-_ ]+$/',
-        'email' => 'required|unique: users, email',
+        'email' => 'required|unique:users,email',
         'password'=>'required|confirmed|alpha_num|min:5',
         'type' => 'required|in:admin, general, professor'
     );
