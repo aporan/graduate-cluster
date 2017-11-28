@@ -1,3 +1,5 @@
 # Graduate Cluster Seat Allocation Portal
 
-`user@demo.com`
+test website at: http://thawing-hamlet-74460.herokuapp.com/login
+
+test user : `user@demo.com`
